@@ -1,4 +1,3 @@
-
 #' Add Gaussian Noise to y with Optional Heteroscedasticity
 #'
 #' This function adds Gaussian noise to the 'y' values of a data frame based on a specified

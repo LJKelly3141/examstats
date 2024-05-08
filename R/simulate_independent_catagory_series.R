@@ -1,4 +1,35 @@
-simulate_independent_catagory_series <- function(levels1, levels2, sample_size = NULL, target_p_value = 0.05, max_iterations = 1000, seed = 12345) {
+#' Simulate Independent Categorical Series
+#'
+#' This function generates two categorical factors with independence between them.
+#'
+#' @param levels1 A vector specifying the levels for the first factor.
+#' @param levels2 A vector specifying the levels for the second factor.
+#' @param sample_size The desired total sample size. If NULL, it will be calculated based on the length of levels1 and levels2.
+#' @param target_p_value The target p-value for the chi-squared test of independence.
+#' @param max_iterations The maximum number of iterations to achieve the target p-value.
+#' @param seed Seed for reproducibility.
+#'
+#' @return A data frame containing the generated factors with the specified independence.
+#'
+#' @examples
+#' levels1 <- c("Red", "Blue", "Green", "Red", "Purple")
+#' levels2 <- c("Circle", "Square", "Triangle")
+#' sample_size <- 150
+#' target_p_value <- 0.25
+#' seed_value <- 12345
+#' result_df <- simulate_independent_category_series(levels1 = levels1,
+#'                                                   levels2 = levels2,
+#'                                                   sample_size = sample_size,
+#'                                                   target_p_value = target_p_value,
+#'                                                   seed = seed_value)
+#' (tbl <- table(result_df$Factor1, result_df$Factor2))
+#' (test <- chisq.test(tbl))
+simulate_independent_catagory_series <- function(levels1,
+                                                 levels2,
+                                                 sample_size = NULL,
+                                                 target_p_value = 0.05,
+                                                 max_iterations = 1000,
+                                                 seed = 12345) {
   # Set the seed for reproducibility
   set.seed(seed)
 
@@ -30,7 +61,8 @@ simulate_independent_catagory_series <- function(levels1, levels2, sample_size =
 
   # Adjusting frequencies to achieve target p-value
   iteration <- 0
-  while (abs(current_p_value - target_p_value) > 0.001 && iteration < max_iterations) {
+  while (abs(current_p_value - target_p_value) > 0.001 &&
+         iteration < max_iterations) {
     # Create a copy of factor2 for perturbation
     factor2_new <- factor2
 
@@ -53,16 +85,3 @@ simulate_independent_catagory_series <- function(levels1, levels2, sample_size =
 
   return(data.frame(Factor1 = factor1, Factor2 = factor2))
 }
-
-# Example usage
-levels1 <- c("Red", "Blue", "Green", "Red","Purple")
-levels2 <- c("Circle", "Square", "Triangle")
-sample_size <- 60
-target_p_value <- 0.25
-seed_value <- 12345  # Specify a seed value for reproducibility
-result_df <- generate_independent_factors(levels1 = levels1, levels2 = levels2, target_p_value = target_p_value)
-
-(tbl <- table(result_df$Factor1, result_df$Factor2))
-(test <- chisq.test(tbl))
-
-print(result_df)
