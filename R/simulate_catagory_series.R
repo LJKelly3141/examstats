@@ -13,10 +13,18 @@
 #' @examples
 #' levels <- c("A", "B", "C", "D")
 #' target_p_value <- 0.15
-#' result_df <- simulate_category_series(levels, target_p_value = target_p_value, probs = c(0.2, 0.4, 0.1, 0.3))
+#' result_df <- simulate_category_series(levels,
+#'                                       target_p_value = target_p_value,
+#'                                       probs = c(0.2, 0.4, 0.1, 0.3))
 #' table(result_df)
 #' chisq.test(table(result_df), p = c(0.2, 0.4, 0.1, 0.3))
-simulate_category_series <- function(levels, probs = NULL, n = 1000, target_p_value = 0.05, max_iterations = 100000) {
+#'
+#' @export
+simulate_category_series <- function(levels,
+                                     probs = NULL,
+                                     n = 1000,
+                                     target_p_value = 0.05,
+                                     max_iterations = 100000) {
   # Set default probabilities to uniform if not provided
   if (is.null(probs)) {
     probs <- rep(1 / length(levels), length(levels))
@@ -35,15 +43,21 @@ simulate_category_series <- function(levels, probs = NULL, n = 1000, target_p_va
   current_p_value <- initial_p_value
 
   # Adjust until target p-value is achieved or max iterations reached
-  while ((current_p_value - target_p_value) > 0.001 && iteration < max_iterations) {
+  while ((current_p_value - target_p_value) > 0.001 &&
+         iteration < max_iterations) {
     # Add random noise to frequencies
-    noise <- runif(length(counts), min = -n/(length(levels)-1) * .01, max = n/(length(levels)-1) * .01)
+    noise <- runif(
+      length(counts),
+      min = -n / (length(levels) - 1) * .01,
+      max = n / (length(levels) - 1) * .01
+    )
     counts_new <- round(counts + noise)
     counts_new[counts_new < 0] <- 0  # Ensure non-negative counts
     counts_new <- round(n * (counts_new / sum(counts_new)), 0)
 
     # Recalculate p-value
-    if (sum(counts) > 0) {  # Avoid division by zero
+    if (sum(counts) > 0) {
+      # Avoid division by zero
       current_p_value_new <- calc_p_value(counts_new, p = probs)
       if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value)) {
         counts <- counts_new

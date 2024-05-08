@@ -7,7 +7,6 @@
 #' @param sample_size The desired total sample size. If NULL, it will be calculated based on the length of levels1 and levels2.
 #' @param target_p_value The target p-value for the chi-squared test of independence.
 #' @param max_iterations The maximum number of iterations to achieve the target p-value.
-#' @param seed Seed for reproducibility.
 #'
 #' @return A data frame containing the generated factors with the specified independence.
 #'
@@ -16,31 +15,34 @@
 #' levels2 <- c("Circle", "Square", "Triangle")
 #' sample_size <- 150
 #' target_p_value <- 0.25
-#' seed_value <- 12345
-#' result_df <- simulate_independent_category_series(levels1 = levels1,
+#' result_df <- simulate_independent_catagory_series(levels1 = levels1,
 #'                                                   levels2 = levels2,
 #'                                                   sample_size = sample_size,
-#'                                                   target_p_value = target_p_value,
-#'                                                   seed = seed_value)
+#'                                                   target_p_value = target_p_value)
 #' (tbl <- table(result_df$Factor1, result_df$Factor2))
 #' (test <- chisq.test(tbl))
+#'
+#' @export
 simulate_independent_catagory_series <- function(levels1,
                                                  levels2,
                                                  sample_size = NULL,
                                                  target_p_value = 0.05,
-                                                 max_iterations = 1000,
-                                                 seed = 12345) {
-  # Set the seed for reproducibility
-  set.seed(seed)
-
+                                                 max_iterations = 1000) {
   # Determine sample size if not provided
   if (is.null(sample_size)) {
     sample_size <- 10 * length(levels1) * length(levels2)
   }
 
-  # Initial random generation of two factors
-  factor1 <- factor(sample(levels1, size = sample_size, replace = TRUE))
-  factor2 <- factor(sample(levels2, size = sample_size, replace = TRUE))
+  x <- 0
+  iteration <- 0
+  while (x < 5 &&
+         iteration < max_iterations) {
+    # Initial random generation of two factors
+    factor1 <- factor(sample(levels1, size = sample_size, replace = TRUE))
+    factor2 <- factor(sample(levels2, size = sample_size, replace = TRUE))
+    x <- min(table(factor1, factor2))
+    iteration <- iteration + 1
+  }
 
   # Check if any expected cell frequency is too low for chi-squared test
   if (any(table(factor1, factor2) < 5)) {

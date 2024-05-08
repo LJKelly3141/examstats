@@ -14,6 +14,8 @@
 #' log_linear_data <- simulate_related_series(sample_size = 100, relationship = "log-linear")
 #' # Generate a quadratic relationship
 #' quadratic_data <- simulate_related_series(sample_size = 100, relationship = "quadratic")
+#'
+#' @export
 simulate_related_series <- function(sample_size, relationship) {
 
   # Define parameters

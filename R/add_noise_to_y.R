@@ -16,6 +16,8 @@
 #' plot(noisy_df_low$x, noisy_df_low$y, type = "l", col = "blue", main = "Noisy Sine Wave")
 #' lines(noisy_df_high_hetero$x, noisy_df_high_hetero$y, col = "red")
 #'
+#' @import stats
+#'
 #' @export
 add_noise_to_y <- function(df, noise_level, heteroscedastic = FALSE) {
   if (!'x' %in% names(df) || !'y' %in% names(df)) {
@@ -46,4 +48,3 @@ add_noise_to_y <- function(df, noise_level, heteroscedastic = FALSE) {
 
   return(data.frame(x = df$x, y = df$y_noisy))
 }
-

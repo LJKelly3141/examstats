@@ -33,4 +33,3 @@ get_nth_values <- function(vec, n) {
   # Return the results in a list
   return(list(nth_largest = nth_largest, nth_smallest = nth_smallest))
 }
-
