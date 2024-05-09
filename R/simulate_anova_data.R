@@ -56,7 +56,7 @@ simulate_anova_data <- function(n = 100,
   # Define group level sd
   if (is.null(sds)) {
     check <- 0
-    while(check<scale*0.1){
+    while(check<scale*0.25){
     if (heteroscedasticity) {
       sds <- runif(groups, min = 0.5 * scale, max = 3.5 * scale)
     } else {
