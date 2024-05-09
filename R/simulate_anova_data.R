@@ -56,7 +56,7 @@ simulate_anova_data <- function(n = 100,
   # Define group level sd
   if (is.null(sds)) {
     if (heteroscedasticity) {
-      sds <- runif(groups, min = 0.5 * scale, max = 2.5 * scale)
+      sds <- runif(groups, min = 0.5 * scale, max = 3.5 * scale)
     } else {
       sds <- rep(sample(1:10, 1), groups)  # Default standard deviation for each group
     }
