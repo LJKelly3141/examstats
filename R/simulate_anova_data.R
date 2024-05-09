@@ -37,7 +37,7 @@ simulate_anova_data <- function(n = 100,
   iteration <- 0
   # Define means if not given
   if (is.null(means)) {
-    means <- rep(runif(1, min = 5, max = 35), groups)
+    means <- rep(runif(1, min = 0, max = 35), groups)
   }
   scale <- max(means)
 
@@ -53,15 +53,24 @@ simulate_anova_data <- function(n = 100,
   # Create the factor variable with 'groups' number of levels
   group_factor <- factor(rep(1:groups, times = group_n))
 
+  scale = 6
+  groups = 4
+  heteroscedasticity = TRUE
+
   # Define group level sd
   if (is.null(sds)) {
-
+    check <- 0
+    while(check<scale*0.1){
     if (heteroscedasticity) {
       sds <- runif(groups, min = 0.5 * scale, max = 3.5 * scale)
     } else {
       sds <- rep(sample(1:10, 1), groups)
     }
-
+     check <- outer(sds, sds, "-")
+     check <- check[lower.tri(check)] |> abs() |> min()
+     print(check)
+     print(sds)
+    }
   }
 
   current_p_value <- 1
