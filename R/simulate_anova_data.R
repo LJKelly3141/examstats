@@ -53,10 +53,6 @@ simulate_anova_data <- function(n = 100,
   # Create the factor variable with 'groups' number of levels
   group_factor <- factor(rep(1:groups, times = group_n))
 
-  scale = 6
-  groups = 4
-  heteroscedasticity = TRUE
-
   # Define group level sd
   if (is.null(sds)) {
     check <- 0
@@ -68,8 +64,6 @@ simulate_anova_data <- function(n = 100,
     }
      check <- outer(sds, sds, "-")
      check <- check[lower.tri(check)] |> abs() |> min()
-     print(check)
-     print(sds)
     }
   }
 
