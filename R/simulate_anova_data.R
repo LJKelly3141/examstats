@@ -34,13 +34,40 @@ simulate_anova_data <- function(n = 100,
                                 heteroscedasticity = sample(c(TRUE, FALSE), 1),
                                 max_iterations = 10000)
 {
-  iteration <- 0
+  simulate_numeric_variable <- function(groups, means, sds) {
+    # groups: A factor vector indicating the group of each observation
+    # means: A numeric vector of means for each group
+    # sds: A numeric vector of standard deviations for each group
+
+    # Validate inputs
+    if (length(means) != length(sds) ||
+        length(means) != length(unique(groups))) {
+      stop(
+        "ERROR IN simulate_numeric_variable: Length of 'means' and 'sds' must equal the number of unique groups."
+      )
+    }
+
+    # Initialize the numeric variable vector
+    numeric_variable <- numeric(length(groups))
+
+    # Generate data for each group
+    for (i in seq_along(unique(groups))) {
+      indices <- which(groups == levels(groups)[i])
+      numeric_variable[indices] <- rnorm(length(indices), mean = means[i], sd = sds[i])
+    }
+
+    # Return the simulated numeric variable
+    return(numeric_variable)
+  }
+
   # Define means if not given
+  iteration <- 0
   if (is.null(means)) {
     means <- rep(runif(1, min = 0, max = 35), groups)
   }
   scale <- max(means)
 
+  # Create the factor variable with 'groups' number of levels
   group_n <- 0
   iteration <- 0
   while (min(group_n) < 5 && iteration < max_iterations) {
@@ -49,46 +76,45 @@ simulate_anova_data <- function(n = 100,
     group_n[groups] <- n - sum(group_n) + group_n[groups]
     iteration <- iteration + 10
   }
-
-  # Create the factor variable with 'groups' number of levels
   group_factor <- factor(rep(1:groups, times = group_n))
-
 
   # Define group level sd
   if (is.null(sds)) {
+    sds <- rep(sample(1:(scale * 0.5), 1), groups)
     if (heteroscedasticity) {
-      while (check < (scale * 0.25) && iteration < max_iterations) {
-        sds <- runif(groups, min = 0.5 * scale, max = 3.5 * scale)
-        check <- outer(sds, sds, "-")
-        check <- check[lower.tri(check)] |> abs() |> min()
+      current_p_value <- 1
+      iteration <- 0
+      while (current_p_value > 0.05 && iteration < max_iterations) {
+        sds_new <- runif(groups, min = 1, max = 10)
+        numeric_variable <- simulate_numeric_variable (groups = group_factor,
+                                                       means = means,
+                                                       sds = sds_new)
+        current_p_value_new <- levene_pvalue(data = numeric_variable, group = group_factor)
+        current_p_value <- if (current_p_value_new < current_p_value) {
+          current_p_value_new
+        } else{
+          current_p_value
+        }
+        sds <- if (current_p_value_new < current_p_value) {
+          sds_new
+        } else{
+          sds
+        }
         iteration <- iteration + 1
-        print(check)
-        print(sds)
       }
-    } else {
-      sds <- rep(sample(1:(scale*0.5), 1), groups)
     }
   }
 
+  # Define jitter group means
   current_p_value <- 1
-
   while (abs(current_p_value - target_p_value) > 0.001 &&
          iteration < max_iterations) {
-    # Define jitter group means
     jitter <- sample((-scale:scale), groups, replace = TRUE)
     jitter <- ifelse(noise_level == "low", jitter * 0.05, jitter * 0.15)
-
-
-    # Add jitter to group means
     means_new <- means + jitter
-
-    # Simulate the numeric variable with varying variances
-    numeric_variable <- rep(NA, n)
-    for (i in seq_len(groups)) {
-      indices <- which(group_factor == levels(group_factor)[i])
-      numeric_variable[indices] <- rnorm(length(indices), mean = means_new[i], sd = sds[i])
-    }
-
+    numeric_variable <- simulate_numeric_variable (groups = group_factor,
+                                                   means = means_new,
+                                                   sds = sds)
 
     current_p_value_new <- summary(lm(numeric_variable ~ group_factor))
     current_p_value_new <- current_p_value_new$fstatistic
@@ -97,13 +123,11 @@ simulate_anova_data <- function(n = 100,
                               current_p_value_new["dendf"],
                               lower.tail = FALSE)
 
-    #print(  c(current_p_value_new) )
 
     if (abs(current_p_value - target_p_value) > abs(current_p_value_new - target_p_value)) {
       current_p_value <- current_p_value_new
       means <- means_new
     }
-
     iteration <- iteration + 1
   }
 
