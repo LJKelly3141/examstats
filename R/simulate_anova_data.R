@@ -56,13 +56,6 @@ simulate_anova_data <- function(n = 100,
 
   # Define group level sd
   if (is.null(sds)) {
-    groups = 4
-    heteroscedasticity = TRUE
-    scale <- 10
-    check <- 0
-    max_iterations <- 1000
-    iteration <- 0
-    heteroscedasticity <- TRUE
     if (heteroscedasticity) {
       while (check < (scale * 0.25) && iteration < max_iterations) {
         sds <- runif(groups, min = 0.5 * scale, max = 3.5 * scale)
@@ -73,7 +66,7 @@ simulate_anova_data <- function(n = 100,
         print(sds)
       }
     } else {
-      sds <- rep(sample(1:10, 1), groups)
+      sds <- rep(sample(1:(scale*0.5), 1), groups)
     }
   }
 
