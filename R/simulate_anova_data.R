@@ -53,12 +53,11 @@ simulate_anova_data <- function(n = 100,
   # Create the factor variable with 'groups' number of levels
   group_factor <- factor(rep(1:groups, times = group_n))
 
-  scale = 6
-  groups = 4
-  heteroscedasticity = TRUE
 
   # Define group level sd
   if (is.null(sds)) {
+    groups = 4
+    heteroscedasticity = TRUE
     scale <- 10
     check <- 0
     max_iterations <- 1000
