@@ -84,7 +84,7 @@ simulate_anova_data <- function(n = 100,
     if (heteroscedasticity) {
       current_p_value <- 1
       iteration <- 0
-      while (current_p_value > 0.05 && iteration < max_iterations) {
+      while (current_p_value > 0.025 && iteration < max_iterations) {
         sds_new <- runif(groups, min = 1, max = 10)
         numeric_variable <- simulate_numeric_variable (groups = group_factor,
                                                        means = means,
