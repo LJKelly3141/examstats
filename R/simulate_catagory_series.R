@@ -48,8 +48,8 @@ simulate_category_series <- function(levels,
     # Add random noise to frequencies
     noise <- runif(
       length(counts),
-      min = -n / (length(levels) - 1) * .01,
-      max = n / (length(levels) - 1) * .01
+      min = -n / (length(levels) - 1) * .1,
+      max = n / (length(levels) - 1) * .1
     )
     counts_new <- round(counts + noise)
     counts_new[counts_new < 0] <- 0  # Ensure non-negative counts

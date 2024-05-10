@@ -20,7 +20,7 @@ chisq_fit_uniform_text <- list(
   ),
   list(
     categories = c("Bus", "Train", "Car", "Bicycle"),
-    prompt = "Analyze commuter preferences for different modes of transport to see if usage rates differ from expected frequencies."
+    prompt = "Analyze commuter preferences for different modes of transport to see if usage rates differ from expected frequencies, assuming equal preference."
   ),
   list(
     categories = c(
@@ -30,11 +30,11 @@ chisq_fit_uniform_text <- list(
       "Dissatisfied",
       "Very Dissatisfied"
     ),
-    prompt = "Evaluate if the distribution of employee satisfaction levels at a company matches the expected distribution outlined by HR."
+    prompt = "Evaluate if the distribution of employee satisfaction levels at a company is uniform across the different categories."
   ),
   list(
     categories = c("Dog", "Cat", "Bird", "Fish", "None"),
-    prompt = "Test if the types of pets owned by residents of an apartment complex follow the expected distribution based on regional pet ownership data."
+    prompt = "Test if the types of pets owned by residents of an apartment complex follow a uniform distribution as expected from regional pet ownership data."
   ),
   list(
     categories = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
@@ -42,57 +42,58 @@ chisq_fit_uniform_text <- list(
   ),
   list(
     categories = c("Flowering", "Non-flowering", "Ferns", "Cacti"),
-    prompt = "Analyze whether the distribution of different types of plants in a public garden matches the planned botanical layout."
+    prompt = "Analyze whether the distribution of different types of plants in a public garden matches a uniform distribution."
   ),
   list(
     categories = c("Brand A", "Brand B", "Brand C", "Brand D"),
-    prompt = "Examine if the market share distribution among four major beverage brands is as expected according to industry reports."
+    prompt = "Examine if the market share distribution among four major beverage brands is uniform as hypothesized in industry reports."
   ),
   list(
     categories = c("Under 20", "20-35", "36-50", "Over 50"),
-    prompt = "Determine if the age distribution of customers visiting a retail store matches the expected distribution based on demographic studies."
+    prompt = "Determine if the age distribution of customers visiting a retail store is uniform across the specified age groups."
   ),
   list(
     categories = c("Undergraduate", "Graduate", "PhD", "Non-student"),
-    prompt = "Investigate if the proportion of different educational levels among participants in a study matches the university's overall demographics."
+    prompt = "Investigate if the proportion of different educational levels among participants in a study is uniform across the categories."
   ),
   list(
     categories = c("Winter", "Spring", "Summer", "Autumn"),
-    prompt = "Assess if tourism visits to a national park are equally distributed across the four seasons."
+    prompt = "Assess if tourism visits to a national park are uniformly distributed across the four seasons."
   ),
   list(
     categories = c("Sci-Fi", "Romance", "Thriller", "Mystery", "Biography"),
-    prompt = "Evaluate if the preferences for book genres among readers of an online bookstore follow the expected distribution."
+    prompt = "Evaluate if the preferences for book genres among readers of an online bookstore are uniformly distributed."
   ),
   list(
     categories = c("Morning", "Afternoon", "Evening"),
-    prompt = "Test if the distribution of gym attendance times during the day follows the expected pattern based on membership sign-up data."
+    prompt = "Test if the distribution of gym attendance times during the day follows a uniform distribution based on membership sign-up data."
   ),
   list(
     categories = c("Android", "iOS", "Other"),
-    prompt = "Check if the market distribution of smartphone operating systems matches industry market share reports."
+    prompt = "Check if the market distribution of smartphone operating systems is uniform, matching industry market share reports."
   ),
   list(
     categories = c("Credit Card", "Debit Card", "Cash", "Electronic"),
-    prompt = "Analyze if payment method preferences at a large retailer adhere to the expected frequencies derived from past sales data."
+    prompt = "Analyze if payment method preferences at a large retailer adhere to a uniform distribution as expected from past sales data."
   ),
   list(
     categories = c("North", "South", "East", "West"),
-    prompt = "Investigate if sales distributions across four geographical regions of a country match the expected equal distribution."
+    prompt = "Investigate if sales distributions across four geographical regions of a country are uniformly distributed."
   ),
   list(
     categories = c("New", "Renewal", "Upgrade", "Cancellation"),
-    prompt = "Examine if customer actions regarding service subscriptions follow the predicted proportions."
+    prompt = "Examine if customer actions regarding service subscriptions are uniformly distributed as predicted."
   ),
   list(
     categories = c("Regular", "Decaf", "Espresso"),
-    prompt = "Determine if the sales distribution of different types of coffee at a cafe matches the expected sales forecasts."
+    prompt = "Determine if the sales distribution of different types of coffee at a cafe is uniform according to expected sales forecasts."
   ),
   list(
     categories = c("Public", "Private", "Charter", "Homeschool"),
-    prompt = "Assess if the distribution of student types in a national education survey matches expected educational demographics."
+    prompt = "Assess if the distribution of student types in a national education survey is uniform across these educational settings."
   )
 )
+
 
 #' @name chisq_fit_nonuniform_text
 #' @title Chi-square Goodness of Fit Test Scenarios for Non-uniform Distributions
