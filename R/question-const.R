@@ -6,7 +6,112 @@
 #' that each category is equally likely.
 #' @export
 chisq_fit_uniform_text <- list(
-  # Existing 20 scenarios are assumed here...
+  list(
+    categories = c("1", "2", "3", "4", "5", "6"),
+    prompt = "Test whether a six-sided die is fair based on the observed frequencies of each outcome over 600 rolls.",
+    filename = "six_sided_die.csv"
+  ),
+  list(
+    categories = c("Red", "Green", "Yellow"),
+    prompt = "Assess if the traffic light at a busy intersection changes states with equal frequency for each light over a specified period.",
+    filename = "traffic_light_frequency.csv"
+  ),
+  list(
+    categories = c("Red", "Blue", "Green", "Black"),
+    prompt = "Determine if customer preferences for four different colors of the same product follow a uniform distribution based on sales data.",
+    filename = "product_color_preference.csv"
+  ),
+  list(
+    categories = c("Bus", "Train", "Car", "Bicycle"),
+    prompt = "Analyze commuter preferences for different modes of transport to see if usage rates differ from expected frequencies, assuming equal preference.",
+    filename = "commuter_preferences.csv"
+  ),
+  list(
+    categories = c(
+      "Very Satisfied",
+      "Satisfied",
+      "Neutral",
+      "Dissatisfied",
+      "Very Dissatisfied"
+    ),
+    prompt = "Evaluate if the distribution of employee satisfaction levels at a company is uniform across the different categories.",
+    filename = "employee_satisfaction_levels.csv"
+  ),
+  list(
+    categories = c("Dog", "Cat", "Bird", "Fish", "None"),
+    prompt = "Test if the types of pets owned by residents of an apartment complex follow a uniform distribution as expected from regional pet ownership data.",
+    filename = "pet_ownership.csv"
+  ),
+  list(
+    categories = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
+    prompt = "Check if student attendance in a class is evenly distributed across the days of the week.",
+    filename = "class_attendance.csv"
+  ),
+  list(
+    categories = c("Flowering", "Non-flowering", "Ferns", "Cacti"),
+    prompt = "Analyze whether the distribution of different types of plants in a public garden matches a uniform distribution.",
+    filename = "garden_plant_types.csv"
+  ),
+  list(
+    categories = c("Brand A", "Brand B", "Brand C", "Brand D"),
+    prompt = "Examine if the market share distribution among four major beverage brands is uniform as hypothesized in industry reports.",
+    filename = "beverage_brand_market_share.csv"
+  ),
+  list(
+    categories = c("Under 20", "20-35", "36-50", "Over 50"),
+    prompt = "Determine if the age distribution of customers visiting a retail store is uniform across the specified age groups.",
+    filename = "retail_store_age.csv"
+  ),
+  list(
+    categories = c("Undergraduate", "Graduate", "PhD", "Non-student"),
+    prompt = "Investigate if the proportion of different educational levels among participants in a study is uniform across the categories.",
+    filename = "educational_level.csv"
+  ),
+  list(
+    categories = c("Winter", "Spring", "Summer", "Autumn"),
+    prompt = "Assess if tourism visits to a national park are uniformly distributed across the four seasons.",
+    filename = "national_park_tourism_season.csv"
+  ),
+  list(
+    categories = c("Sci-Fi", "Romance", "Thriller", "Mystery", "Biography"),
+    prompt = "Evaluate if the preferences for book genres among readers of an online bookstore are uniformly distributed.",
+    filename = "book_genre_preferences.csv"
+  ),
+  list(
+    categories = c("Morning", "Afternoon", "Evening"),
+    prompt = "Test if the distribution of gym attendance times during the day follows a uniform distribution based on membership sign-up data.",
+    filename = "gym_attendance_times.csv"
+  ),
+  list(
+    categories = c("Android", "iOS", "Other"),
+    prompt = "Check if the market distribution of smartphone operating systems is uniform, matching industry market share reports.",
+    filename = "smartphone_os_market.csv"
+  ),
+  list(
+    categories = c("Credit Card", "Debit Card", "Cash", "Electronic"),
+    prompt = "Analyze if payment method preferences at a large retailer adhere to a uniform distribution as expected from past sales data.",
+    filename = "retailer_payment_method.csv"
+  ),
+  list(
+    categories = c("North", "South", "East", "West"),
+    prompt = "Investigate if sales distributions across four geographical regions of a country are uniformly distributed.",
+    filename = "geographical_sales.csv"
+  ),
+  list(
+    categories = c("New", "Renewal", "Upgrade", "Cancellation"),
+    prompt = "Examine if customer actions regarding service subscriptions are uniformly distributed as predicted.",
+    filename = "service_subscription_actions.csv"
+  ),
+  list(
+    categories = c("Regular", "Decaf", "Espresso"),
+    prompt = "Determine if the sales distribution of different types of coffee at a cafe is uniform according to expected sales forecasts.",
+    filename = "cafe_coffee_types_sales.csv"
+  ),
+  list(
+    categories = c("Public", "Private", "Charter", "Homeschool"),
+    prompt = "Assess if the distribution of student types in a national education survey is uniform across these educational settings.",
+    filename = "education_settings_student.csv"
+  ),
   list(
     categories = c("Rural", "Urban", "Suburban"),
     prompt = "Test if housing development types are uniformly distributed in a real estate portfolio.",
@@ -244,7 +349,6 @@ chisq_fit_uniform_text <- list(
   )
 )
 
-
 #' @name chisq_fit_nonuniform_text
 #' @title Chi-square Goodness of Fit Test Scenarios for Non-uniform Distributions
 #' @description Contains lists of category pairs with descriptions and prompts for conducting
@@ -255,104 +359,306 @@ chisq_fit_nonuniform_text <- list(
   list(
     description = c("All employees", "Management"),
     categories = c("Technical", "Administrative", "Management"),
-    prompt = "Evaluate whether the role distribution within the management team reflects the overall distribution of roles among all company employees."
+    prompt = "Evaluate whether the role distribution within the management team reflects the overall distribution of roles among all company employees.",
+    filename = "management_role.csv"
   ),
   list(
     description = c("All students", "Honor students"),
     categories = c("Science", "Humanities", "Engineering", "Business"),
-    prompt = "Test whether the distribution of majors among honor students mirrors that of the general student body."
+    prompt = "Test whether the distribution of majors among honor students mirrors that of the general student body.",
+    filename = "honor_students_major.csv"
   ),
   list(
     description = c("General voters", "Early voters"),
     categories = c("Party A", "Party B", "Independent"),
-    prompt = "Analyze if the political preference distribution among early voters is similar to that of the general voter population."
+    prompt = "Analyze if the political preference distribution among early voters is similar to that of the general voter population.",
+    filename = "early_voters_political_preference.csv"
   ),
   list(
     description = c("All customers", "Premium customers"),
     categories = c("Product A", "Product B", "Product C"),
-    prompt = "Determine if the product preference among premium customers is consistent with the overall customer base."
+    prompt = "Determine if the product preference among premium customers is consistent with the overall customer base.",
+    filename = "premium_customers_product_preference.csv"
   ),
   list(
     description = c("Total library visitors", "Teen borrowers"),
     categories = c("Fiction", "Non-fiction", "Reference", "Children's books"),
-    prompt = "Assess if the book genre preferences of teen borrowers reflect those of the broader library visitorship."
+    prompt = "Assess if the book genre preferences of teen borrowers reflect those of the broader library visitorship.",
+    filename = "teen_borrowers_genre_preferences.csv"
   ),
   list(
     description = c("Website visitors", "Mobile users"),
     categories = c("Direct", "Referral", "Social", "Paid"),
-    prompt = "Check if the distribution of traffic sources for mobile users matches the distribution observed across all website visitors."
+    prompt = "Check if the distribution of traffic sources for mobile users matches the distribution observed across all website visitors.",
+    filename = "mobile_users_traffic_sources.csv"
   ),
   list(
     description = c("Cinema goers", "Action movie fans"),
     categories = c("Action", "Comedy", "Drama", "Sci-fi", "Horror"),
-    prompt = "Verify if the genre preferences among action movie fans are representative of the overall cinema-going population."
+    prompt = "Verify if the genre preferences among action movie fans are representative of the overall cinema-going population.",
+    filename = "action_movie_fans_genre_preferences.csv"
   ),
   list(
     description = c("Coffee shop clientele", "Afternoon visitors"),
     categories = c("Morning", "Afternoon", "Evening"),
-    prompt = "Examine whether the visitation times of afternoon visitors are indicative of the general visitation patterns at the coffee shop."
+    prompt = "Examine whether the visitation times of afternoon visitors are indicative of the general visitation patterns at the coffee shop.",
+    filename = "afternoon_visitors_coffee_shop_patterns.csv"
   ),
   list(
     description = c("Music streaming subscribers", "Playlist creators"),
     categories = c("Pop", "Rock", "Classical", "Jazz", "Hip-hop"),
-    prompt = "Investigate if the music genre preferences of playlist creators align with those of all subscribers."
+    prompt = "Investigate if the music genre preferences of playlist creators align with those of all subscribers.",
+    filename = "playlist_creators_music_preferences.csv"
   ),
   list(
     description = c("Retail store shoppers", "Weekend shoppers"),
     categories = c("Clothing", "Electronics", "Groceries", "Household"),
-    prompt = "Explore whether the shopping preferences of weekend shoppers mirror the typical distribution seen among all store shoppers."
+    prompt = "Explore whether the shopping preferences of weekend shoppers mirror the typical distribution seen among all store shoppers.",
+    filename = "weekend_shoppers_preferences.csv"
   ),
   list(
     description = c("Software users", "Beta testers"),
     categories = c("Windows", "MacOS", "Linux"),
-    prompt = "Evaluate if the OS distribution among beta testers reflects that of the general software user base."
+    prompt = "Evaluate if the OS distribution among beta testers reflects that of the general software user base.",
+    filename = "beta_testers_os.csv"
   ),
   list(
     description = c("Airline passengers", "Frequent flyers"),
     categories = c("Domestic", "International"),
-    prompt = "Assess if the travel patterns of frequent flyers are similar to the overall airline passenger population."
+    prompt = "Assess if the travel patterns of frequent flyers are similar to the overall airline passenger population.",
+    filename = "frequent_flyers_travel_patterns.csv"
   ),
   list(
     description = c("Gym members", "Morning attendees"),
     categories = c("Weightlifting", "Cardio", "Yoga", "Swimming"),
-    prompt = "Check if the activity preferences of morning attendees reflect the general preferences of all gym members."
+    prompt = "Check if the activity preferences of morning attendees reflect the general preferences of all gym members.",
+    filename = "morning_attendees_activity_preferences.csv"
   ),
   list(
     description = c("Online forum members", "Content creators"),
     categories = c("Posts", "Comments", "Shares"),
-    prompt = "Determine if the engagement types among content creators are representative of the wider forum member activities."
+    prompt = "Determine if the engagement types among content creators are representative of the wider forum member activities.",
+    filename = "content_creators_engagement_types.csv"
   ),
   list(
     description = c("Restaurant patrons", "Group diners"),
     categories = c("Italian", "Mexican", "Chinese", "Indian"),
-    prompt = "Investigate if the cuisine preferences of group diners align with those of all restaurant patrons."
+    prompt = "Investigate if the cuisine preferences of group diners align with those of all restaurant patrons.",
+    filename = "group_diners_cuisine_preferences.csv"
   ),
   list(
     description = c("Car owners", "Electric vehicle owners"),
     categories = c("Sedan", "SUV", "Truck", "Electric"),
-    prompt = "Analyze whether the vehicle type distribution among electric vehicle owners matches that seen among all car owners."
+    prompt = "Analyze whether the vehicle type distribution among electric vehicle owners matches that seen among all car owners.",
+    filename = "electric_vehicle_owners_type.csv"
   ),
   list(
     description = c("Pet owners", "Dog owners"),
     categories = c("Dog", "Cat", "Bird", "Fish"),
-    prompt = "Examine if the distribution of pet types among dog owners reflects the distribution among all pet owners."
+    prompt = "Examine if the distribution of pet types among dog owners reflects the distribution among all pet owners.",
+    filename = "dog_owners_pet_type.csv"
   ),
   list(
     description = c("Movie streaming service users", "Documentary watchers"),
     categories = c("Drama", "Action", "Comedy", "Documentary"),
-    prompt = "Verify if the genre preferences among documentary watchers are similar to those of the broader user base of the movie streaming service."
+    prompt = "Verify if the genre preferences among documentary watchers are similar to those of the broader user base of the movie streaming service.",
+    filename = "documentary_watchers_genre_preferences.csv"
   ),
   list(
     description = c("Credit card holders", "Rewards card users"),
     categories = c("Standard", "Gold", "Platinum", "Rewards"),
-    prompt = "Check if the card type preferences among rewards card users reflect those of the general credit card holder population."
+    prompt = "Check if the card type preferences among rewards card users reflect those of the general credit card holder population.",
+    filename = "rewards_card_users_preferences.csv"
   ),
   list(
     description = c("Social media users", "Influencers"),
     categories = c("Text posts", "Image posts", "Video posts"),
-    prompt = "Assess if the post types used by influencers are indicative of the overall trends observed among all social media users."
+    prompt = "Assess if the post types used by influencers are indicative of the overall trends observed among all social media users.",
+    filename = "influencers_post_type.csv"
+  ),
+  # New entries continue from here...
+  list(
+    description = c("Hourly Employees", "Salaried Employees"),
+    categories = c("Below 30K", "30K-50K", "50K-70K", "Above 70K"),
+    prompt = "Analyze if the salary distribution among hourly and salaried employees reflects the overall pay structure in the company.",
+    filename = "employee_salary_distribution_comparison.csv"
+  ),
+  list(
+    description = c("Domestic Clients", "International Clients"),
+    categories = c("Product 1", "Product 2", "Product 3"),
+    prompt = "Evaluate if the product preference among international clients mirrors that of domestic clients.",
+    filename = "client_product_preference_comparison.csv"
+  ),
+  list(
+    description = c("Full-time Students", "Part-time Students"),
+    categories = c("Business", "Arts", "Sciences", "Engineering"),
+    prompt = "Assess if the major distribution among part-time students is similar to that of full-time students.",
+    filename = "student_status_major.csv"
+  ),
+  list(
+    description = c("New Hires", "Veteran Employees"),
+    categories = c("Entry-Level", "Mid-Level", "Senior-Level"),
+    prompt = "Check if the job level distribution among new hires is representative of the distribution among veteran employees.",
+    filename = "employee_job_level.csv"
+  ),
+  list(
+    description = c("Branch A", "Branch B"),
+    categories = c("Low", "Medium", "High"),
+    prompt = "Investigate if customer satisfaction levels at Branch B align with those observed at Branch A.",
+    filename = "branch_customer_satisfaction_comparison.csv"
+  ),
+  list(
+    description = c("Traditional Market", "Online Market"),
+    categories = c("Consumer Goods", "Technology Products", "Service Offerings"),
+    prompt = "Determine if sales distribution in the online market reflects the distribution in the traditional market.",
+    filename = "market_sales_distribution_comparison.csv"
+  ),
+  list(
+    description = c("Men", "Women"),
+    categories = c("Healthcare", "Finance", "Technology", "Education"),
+    prompt = "Examine if the industry employment distribution among women matches that of men.",
+    filename = "gender_industry_employment.csv"
+  ),
+  list(
+    description = c("Company Investors", "Public Investors"),
+    categories = c("Tech", "Health", "Energy", "Utilities"),
+    prompt = "Verify if investment preferences among company investors are representative of those among public investors.",
+    filename = "investor_preferences_comparison.csv"
+  ),
+  list(
+    description = c("On-site Workers", "Remote Workers"),
+    categories = c("Productivity", "Collaboration", "Independence", "Innovation"),
+    prompt = "Explore whether the performance attributes rated by remote workers mirror those rated by on-site workers.",
+    filename = "worker_performance_attributes_comparison.csv"
+  ),
+  list(
+    description = c("Young Adults", "Elderly Clients"),
+    categories = c("Savings", "Investments", "Loans", "Insurance"),
+    prompt = "Assess if the financial product preferences of elderly clients align with those of young adults.",
+    filename = "client_financial_product_preferences.csv"
+  ),
+  list(
+    description = c("Economy Class", "Business Class"),
+    categories = c("Short-haul", "Long-haul"),
+    prompt = "Evaluate if the flight type preference among business class passengers reflects those in economy class.",
+    filename = "passenger_flight_type_preference.csv"
+  ),
+  list(
+    description = c("Retail Bankers", "Investment Bankers"),
+    categories = c("Client Interaction", "Deal Making", "Risk Management"),
+    prompt = "Check if the skill set emphasis in investment banking aligns with that in retail banking.",
+    filename = "banking_sector_skills_comparison.csv"
+  ),
+  list(
+    description = c("Startup Companies", "Established Companies"),
+    categories = c("Innovation", "Stability", "Growth", "Profitability"),
+    prompt = "Investigate whether priorities of startup companies in terms of business focus are similar to those of established companies.",
+    filename = "company_type_business_focus_comparison.csv"
+  ),
+  list(
+    description = c("Domestic Suppliers", "International Suppliers"),
+    categories = c("Timeliness", "Quality", "Cost"),
+    prompt = "Determine if the performance ratings of international suppliers match those of domestic suppliers.",
+    filename = "supplier_performance_ratings_comparison.csv"
+  ),
+  list(
+    description = c("Annual Subscribers", "Monthly Subscribers"),
+    categories = c("Usage Frequency", "Content Satisfaction", "Service Quality"),
+    prompt = "Examine if the satisfaction levels among annual subscribers reflect those among monthly subscribers.",
+    filename = "subscriber_satisfaction_levels_comparison.csv"
+  ),
+  list(
+    description = c("Small Businesses", "Large Enterprises"),
+    categories = c("Grants Received", "Loans Approved", "Tax Breaks"),
+    prompt = "Analyze if the type of financial support accessed by large enterprises is similar to that accessed by small businesses.",
+    filename = "financial_support_business_size_comparison.csv"
+  ),
+  list(
+    description = c("Urban Areas", "Rural Areas"),
+    categories = c("Internet Service", "Mobile Coverage", "Broadcast Services"),
+    prompt = "Evaluate if the distribution of telecommunication services in urban areas mirrors that in rural areas.",
+    filename = "telecom_services_area_comparison.csv"
+  ),
+  list(
+    description = c("Recent Graduates", "Experienced Professionals"),
+    categories = c("Job Offers", "Internship Offers", "Training Opportunities"),
+    prompt = "Assess if the career opportunities for recent graduates align with those for experienced professionals.",
+    filename = "career_opportunities_experience_level_comparison.csv"
+  ),
+  list(
+    description = c("Manufacturing Sector", "Service Sector"),
+    categories = c("Employee Turnover", "Salary Increase", "Promotions"),
+    prompt = "Check if employee benefits distribution in the manufacturing sector is representative of the service sector.",
+    filename = "sector_employee_benefits_comparison.csv"
+  ),
+  list(
+    description = c("Morning Shift", "Night Shift"),
+    categories = c("Job Satisfaction", "Work-Life Balance", "Stress Levels"),
+    prompt = "Investigate whether the job satisfaction levels of night shift workers match those of morning shift workers.",
+    filename = "shift_worker_satisfaction_comparison.csv"
+  ),
+  list(
+    description = c("First-time Homebuyers", "Repeat Homebuyers"),
+    categories = c("Under $250K", "$250K-$500K", "Over $500K"),
+    prompt = "Determine if the home price preferences of repeat homebuyers reflect those of first-time homebuyers.",
+    filename = "homebuyer_price_preferences_comparison.csv"
+  ),
+  list(
+    description = c("Domestic Flights", "International Flights"),
+    categories = c("On-time", "Delayed", "Cancelled"),
+    prompt = "Examine if the reliability of international flights matches that of domestic flights.",
+    filename = "flight_reliability_comparison.csv"
+  ),
+  list(
+    description = c("Undergraduate Students", "Graduate Students"),
+    categories = c("Scholarships", "Fellowships", "Student Loans"),
+    prompt = "Verify if the types of financial aid utilized by graduate students are similar to those used by undergraduates.",
+    filename = "student_financial_aid_comparison.csv"
+  ),
+  list(
+    description = c("E-Commerce Platforms", "Brick-and-Mortar Stores"),
+    categories = c("Customer Traffic", "Sales Volume", "Product Returns"),
+    prompt = "Assess if the sales dynamics of brick-and-mortar stores align with those of e-commerce platforms.",
+    filename = "sales_dynamics_platform_comparison.csv"
+  ),
+  list(
+    description = c("Low-Income Families", "High-Income Families"),
+    categories = c("Public School", "Private School", "Homeschool"),
+    prompt = "Analyze if the school type choices of high-income families reflect those of low-income families.",
+    filename = "family_income_school_choice_comparison.csv"
+  ),
+  list(
+    description = c("Tech Industry", "Healthcare Industry"),
+    categories = c("Research & Development", "Marketing", "Operations"),
+    prompt = "Evaluate if the departmental resource allocation in the healthcare industry mirrors that in the tech industry.",
+    filename = "industry_departmental_allocation_comparison.csv"
+  ),
+  list(
+    description = c("Local News Outlets", "National News Outlets"),
+    categories = c("Print Media", "Digital Media", "Broadcast Media"),
+    prompt = "Check if the media format preferences among national news outlet audiences are representative of those at local news outlets.",
+    filename = "news_outlet_media_format_comparison.csv"
+  ),
+  list(
+    description = c("Startup Founders", "Corporate Executives"),
+    categories = c("Risk Tolerance", "Innovation Focus", "Growth Priority"),
+    prompt = "Investigate whether the business priorities of corporate executives align with those of startup founders.",
+    filename = "business_priorities_role_comparison.csv"
+  ),
+  list(
+    description = c("Manual Workers", "Office Workers"),
+    categories = c("Health Insurance", "Pension Plans", "Vacation Days"),
+    prompt = "Determine if the benefits preferences of office workers reflect those of manual workers.",
+    filename = "worker_benefits_preferences_comparison.csv"
+  ),
+  list(
+    description = c("Renters", "Homeowners"),
+    categories = c("Spending on Furniture", "Home Improvement", "Utility Costs"),
+    prompt = "Examine whether the spending habits of homeowners on home-related expenses match those of renters.",
+    filename = "home_expense_spending_comparison.csv"
   )
 )
+
 
 #' @name chisq_independence_text
 #' @title Chi-square Tests of Independence Scenarios

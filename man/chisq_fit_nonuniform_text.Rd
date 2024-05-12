@@ -5,7 +5,7 @@
 \alias{chisq_fit_nonuniform_text}
 \title{Chi-square Goodness of Fit Test Scenarios for Non-uniform Distributions}
 \format{
-An object of class \code{list} of length 20.
+An object of class \code{list} of length 50.
 }
 \usage{
 chisq_fit_nonuniform_text

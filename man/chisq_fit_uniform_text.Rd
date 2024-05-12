@@ -5,7 +5,7 @@
 \alias{chisq_fit_uniform_text}
 \title{Chi-square Goodness of Fit Test Scenarios for Uniform Distributions}
 \format{
-An object of class \code{list} of length 20.
+An object of class \code{list} of length 67.
 }
 \usage{
 chisq_fit_uniform_text

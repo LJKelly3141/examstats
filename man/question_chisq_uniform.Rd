@@ -8,6 +8,7 @@ question_chisq_uniform(
   levels = NULL,
   prompt = NULL,
   probs = NULL,
+  filename = NULL,
   n = 50,
   target_p_value = 0.05,
   max_iterations = 1e+05
@@ -22,6 +23,8 @@ If NULL, associated with the randomly selected scenario.}
 
 \item{probs}{A vector of probabilities for each level.
 If NULL, assumes uniform distribution across levels.}
+
+\item{filename}{A file name for an encoded csv file.}
 
 \item{n}{The number of samples to generate for the category data.}
 

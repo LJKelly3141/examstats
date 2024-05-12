@@ -11,6 +11,7 @@
 #'               If NULL, associated with the randomly selected scenario.
 #' @param probs A vector of probabilities for each level.
 #'              If NULL, assumes uniform distribution across levels.
+#' @param filename A file name for an encoded csv file.
 #' @param n The number of samples to generate for the category data.
 #' @param target_p_value The target p-value for ensuring the data fits the Chi-square test criteria.
 #' @param max_iterations The maximum number of iterations to attempt to meet the target p-value.
@@ -23,6 +24,7 @@
 question_chisq_uniform <- function(levels = NULL,
                                    prompt = NULL,
                                    probs = NULL,
+                                   filename = NULL,
                                    n = 50,
                                    target_p_value = 0.05,
                                    max_iterations = 100000) {
@@ -31,6 +33,7 @@ question_chisq_uniform <- function(levels = NULL,
     question_number <- sample(1:length(chisq_fit_uniform_text), 1)
     levels = chisq_fit_uniform_text[[question_number]]$categories
     prompt = chisq_fit_uniform_text[[question_number]]$prompt
+    filename = chisq_fit_uniform_text[[question_number]]$filename
   }
 
   # Generate question data
@@ -41,6 +44,8 @@ question_chisq_uniform <- function(levels = NULL,
     target_p_value = target_p_value,
     max_iterations = max_iterations
   )
+
+  link <- encode_data_as_link(data = data.frame(data), file_name = filename)
 
   # Generate table data
   table <- table(data)
@@ -53,6 +58,7 @@ question_chisq_uniform <- function(levels = NULL,
     levels = levels,
     prompt = prompt,
     data = data,
+    link = link,
     table = table,
     test = test
   ))
