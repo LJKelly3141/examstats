@@ -6,93 +6,244 @@
 #' that each category is equally likely.
 #' @export
 chisq_fit_uniform_text <- list(
+  # Existing 20 scenarios are assumed here...
   list(
-    categories = c("1", "2", "3", "4", "5", "6"),
-    prompt = "Test whether a six-sided die is fair based on the observed frequencies of each outcome over 600 rolls."
+    categories = c("Rural", "Urban", "Suburban"),
+    prompt = "Test if housing development types are uniformly distributed in a real estate portfolio.",
+    filename = "housing_development_uniformity.csv"
   ),
   list(
-    categories = c("Red", "Green", "Yellow"),
-    prompt = "Assess if the traffic light at a busy intersection changes states with equal frequency for each light over a specified period."
+    categories = c("1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"),
+    prompt = "Assess if customer ratings for a new product are uniformly distributed across all rating categories.",
+    filename = "product_ratings_uniformity.csv"
   ),
   list(
-    categories = c("Red", "Blue", "Green", "Black"),
-    prompt = "Determine if customer preferences for four different colors of the same product follow a uniform distribution based on sales data."
+    categories = c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
+    prompt = "Analyze if sales are uniformly distributed across all months of the year.",
+    filename = "monthly_sales_distribution.csv"
   ),
   list(
-    categories = c("Bus", "Train", "Car", "Bicycle"),
-    prompt = "Analyze commuter preferences for different modes of transport to see if usage rates differ from expected frequencies, assuming equal preference."
+    categories = c("Under 18", "18-24", "25-34", "35-44", "45-54", "55-64", "65+"),
+    prompt = "Determine if the age distribution of social media platform users is uniform.",
+    filename = "social_media_age_distribution.csv"
   ),
   list(
-    categories = c(
-      "Very Satisfied",
-      "Satisfied",
-      "Neutral",
-      "Dissatisfied",
-      "Very Dissatisfied"
-    ),
-    prompt = "Evaluate if the distribution of employee satisfaction levels at a company is uniform across the different categories."
+    categories = c("Male", "Female", "Other"),
+    prompt = "Evaluate if the gender distribution among participants in a clinical trial is uniform.",
+    filename = "clinical_trial_gender_uniformity.csv"
   ),
   list(
-    categories = c("Dog", "Cat", "Bird", "Fish", "None"),
-    prompt = "Test if the types of pets owned by residents of an apartment complex follow a uniform distribution as expected from regional pet ownership data."
+    categories = c("0", "1", "2", "3 or more", "None"),
+    prompt = "Check if the number of children in households from a census survey is uniformly distributed.",
+    filename = "household_children_distribution.csv"
+  ),
+  list(
+    categories = c("Agriculture", "Manufacturing", "Services", "Tech"),
+    prompt = "Analyze if job openings are uniformly distributed among different sectors in an economy.",
+    filename = "sector_job_openings_uniformity.csv"
+  ),
+  list(
+    categories = c("Less than $10,000", "$10,000-$50,000", "$50,000-$100,000", "More than $100,000"),
+    prompt = "Determine if the annual investments by individuals in a financial year are uniformly distributed.",
+    filename = "annual_investments_distribution.csv"
+  ),
+  list(
+    categories = c("Startup", "Growth", "Established", "Decline"),
+    prompt = "Assess if the number of companies in different business lifecycle stages is uniform.",
+    filename = "business_lifecycle_stage_distribution.csv"
+  ),
+  list(
+    categories = c("Profit", "Break-even", "Loss"),
+    prompt = "Examine if the financial outcomes for startups in their first year are uniformly distributed.",
+    filename = "startup_first_year_financial_outcomes.csv"
+  ),
+  list(
+    categories = c("North America", "Europe", "Asia", "South America", "Africa", "Australia"),
+    prompt = "Evaluate if the distribution of branch offices of a multinational corporation is uniform across continents.",
+    filename = "mnc_branch_distribution.csv"
+  ),
+  list(
+    categories = c("Bank Loan", "Venture Capital", "Angel Investment", "Government Grant", "Personal Funds"),
+    prompt = "Test if funding types utilized by startups are uniformly distributed.",
+    filename = "startup_funding_types_distribution.csv"
+  ),
+  list(
+    categories = c("Local", "Regional", "National", "International"),
+    prompt = "Check if the distribution of contracts secured by a company is uniform across different market scales.",
+    filename = "contracts_market_scale_distribution.csv"
+  ),
+  list(
+    categories = c("Retail", "Wholesale", "Online"),
+    prompt = "Investigate if sales channels for a product line are uniformly used based on transaction data.",
+    filename = "sales_channel_usage_distribution.csv"
+  ),
+  list(
+    categories = c("Merger", "Acquisition", "Partnership", "Solo Expansion"),
+    prompt = "Analyze the strategies companies use for growth to see if they are uniformly chosen.",
+    filename = "company_growth_strategies_distribution.csv"
+  ),
+  list(
+    categories = c("Consulting", "Finance", "Technology", "Healthcare", "Education"),
+    prompt = "Determine if the sector preference for MBA graduates is uniform across these fields.",
+    filename = "mba_graduate_sector_preference.csv"
   ),
   list(
     categories = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday"),
-    prompt = "Check if student attendance in a class is evenly distributed across the days of the week."
+    prompt = "Examine if there's a uniform distribution of days on which corporate meetings are scheduled.",
+    filename = "corporate_meetings_day_distribution.csv"
   ),
   list(
-    categories = c("Flowering", "Non-flowering", "Ferns", "Cacti"),
-    prompt = "Analyze whether the distribution of different types of plants in a public garden matches a uniform distribution."
+    categories = c("Under 30 minutes", "30-60 minutes", "1-2 hours", "2+ hours"),
+    prompt = "Evaluate if the duration of client meetings at a consulting firm is uniformly distributed.",
+    filename = "client_meeting_duration_distribution.csv"
   ),
   list(
-    categories = c("Brand A", "Brand B", "Brand C", "Brand D"),
-    prompt = "Examine if the market share distribution among four major beverage brands is uniform as hypothesized in industry reports."
+    categories = c("North", "East", "South", "West"),
+    prompt = "Test if regional sales performance for a new product is uniform across all regions.",
+    filename = "regional_sales_performance.csv"
   ),
   list(
-    categories = c("Under 20", "20-35", "36-50", "Over 50"),
-    prompt = "Determine if the age distribution of customers visiting a retail store is uniform across the specified age groups."
+    categories = c("Less than 1 year", "1-3 years", "3-5 years", "More than 5 years"),
+    prompt = "Analyze if the duration of employment among employees at a tech company is uniformly distributed.",
+    filename = "employment_duration_distribution_tech.csv"
   ),
   list(
-    categories = c("Undergraduate", "Graduate", "PhD", "Non-student"),
-    prompt = "Investigate if the proportion of different educational levels among participants in a study is uniform across the categories."
+    categories = c("Research & Development", "Marketing", "Operations", "Human Resources"),
+    prompt = "Determine if project allocation among departments in a corporation is uniformly distributed.",
+    filename = "project_allocation_departments.csv"
   ),
   list(
-    categories = c("Winter", "Spring", "Summer", "Autumn"),
-    prompt = "Assess if tourism visits to a national park are uniformly distributed across the four seasons."
+    categories = c("Energy", "Utilities", "Consumer Goods", "Financial", "Technology"),
+    prompt = "Assess if investment flows into stock market sectors are uniformly distributed.",
+    filename = "investment_flows_stock_sectors.csv"
   ),
   list(
-    categories = c("Sci-Fi", "Romance", "Thriller", "Mystery", "Biography"),
-    prompt = "Evaluate if the preferences for book genres among readers of an online bookstore are uniformly distributed."
+    categories = c("1-10 employees", "11-50 employees", "51-200 employees", "201+ employees"),
+    prompt = "Examine if the company size distribution among startup accelerators is uniform.",
+    filename = "startup_accelerator_company_size.csv"
   ),
   list(
-    categories = c("Morning", "Afternoon", "Evening"),
-    prompt = "Test if the distribution of gym attendance times during the day follows a uniform distribution based on membership sign-up data."
+    categories = c("Q1", "Q2", "Q3", "Q4"),
+    prompt = "Evaluate if quarterly revenue generation for a retailer is uniformly distributed across the year.",
+    filename = "quarterly_revenue_distribution.csv"
   ),
   list(
-    categories = c("Android", "iOS", "Other"),
-    prompt = "Check if the market distribution of smartphone operating systems is uniform, matching industry market share reports."
+    categories = c("Domestic", "International"),
+    prompt = "Check if the shipment volumes of a manufacturing company are uniformly distributed between domestic and international markets.",
+    filename = "shipment_volumes_distribution.csv"
   ),
   list(
-    categories = c("Credit Card", "Debit Card", "Cash", "Electronic"),
-    prompt = "Analyze if payment method preferences at a large retailer adhere to a uniform distribution as expected from past sales data."
+    categories = c("Planned", "Ad-hoc"),
+    prompt = "Investigate if the types of IT system upgrades in a large corporation are uniformly planned or occur ad-hoc.",
+    filename = "it_system_upgrades_type_distribution.csv"
+  ),
+  list(
+    categories = c("Up to 100K", "100K-500K", "500K-1M", "1M+"),
+    prompt = "Analyze if the distribution of yearly advertising budgets across different companies is uniform.",
+    filename = "advertising_budgets_distribution.csv"
   ),
   list(
     categories = c("North", "South", "East", "West"),
-    prompt = "Investigate if sales distributions across four geographical regions of a country are uniformly distributed."
+    prompt = "Determine if the distribution of government funding for small businesses is uniform across geographical regions.",
+    filename = "government_funding_small_business_distribution.csv"
   ),
   list(
-    categories = c("New", "Renewal", "Upgrade", "Cancellation"),
-    prompt = "Examine if customer actions regarding service subscriptions are uniformly distributed as predicted."
+    categories = c("Groceries", "Electronics", "Clothing", "Furniture"),
+    prompt = "Assess if consumer spending in different product categories is uniformly distributed.",
+    filename = "consumer_spending_categories_distribution.csv"
   ),
   list(
-    categories = c("Regular", "Decaf", "Espresso"),
-    prompt = "Determine if the sales distribution of different types of coffee at a cafe is uniform according to expected sales forecasts."
+    categories = c("Cash", "Credit", "Debit", "Online Transfer", "Mobile Payment"),
+    prompt = "Examine if payment method preferences among consumers are uniformly distributed.",
+    filename = "payment_method_preferences_distribution.csv"
   ),
   list(
-    categories = c("Public", "Private", "Charter", "Homeschool"),
-    prompt = "Assess if the distribution of student types in a national education survey is uniform across these educational settings."
+    categories = c("Freshmen", "Sophomore", "Junior", "Senior"),
+    prompt = "Evaluate if the distribution of academic years among university student interns is uniform.",
+    filename = "student_interns_academic_year_distribution.csv"
+  ),
+  list(
+    categories = c("Under $30,000", "$30,000-$60,000", "$60,000-$90,000", "Over $90,000"),
+    prompt = "Check if salary levels within a mid-sized company are uniformly distributed.",
+    filename = "company_salary_levels_distribution.csv"
+  ),
+  list(
+    categories = c("Under 5 years", "5-10 years", "10-20 years", "Over 20 years"),
+    prompt = "Investigate if the tenure of board members at a non-profit organization is uniformly distributed.",
+    filename = "board_member_tenure_distribution.csv"
+  ),
+  list(
+    categories = c("Office", "Remote", "Hybrid"),
+    prompt = "Analyze if the preferred working modes among employees in a multinational are uniformly distributed.",
+    filename = "employee_working_modes_distribution.csv"
+  ),
+  list(
+    categories = c("Under 500 sq ft", "500-1000 sq ft", "1000-1500 sq ft", "Over 1500 sq ft"),
+    prompt = "Determine if the office space sizes utilized by startups in a business incubator are uniformly distributed.",
+    filename = "startup_office_space_distribution.csv"
+  ),
+  list(
+    categories = c("Manufacturing", "Retail", "Service", "Technology"),
+    prompt = "Assess if the type of business most frequently started in an urban area is uniformly distributed.",
+    filename = "new_business_types_urban_area_distribution.csv"
+  ),
+  list(
+    categories = c("Government", "Corporate", "Non-profit", "Startup"),
+    prompt = "Examine if the client types for a major consulting firm are uniformly distributed.",
+    filename = "consulting_firm_client_types_distribution.csv"
+  ),
+  list(
+    categories = c("Bi-weekly", "Monthly", "Quarterly", "Annually"),
+    prompt = "Evaluate if the frequency of performance reviews at a large organization is uniformly distributed.",
+    filename = "performance_review_frequency_distribution.csv"
+  ),
+  list(
+    categories = c("Internal Promotion", "External Hire"),
+    prompt = "Check if the methods of filling senior management positions in a corporation are uniformly distributed.",
+    filename = "senior_management_position_filling_methods.csv"
+  ),
+  list(
+    categories = c("Short-term", "Mid-term", "Long-term"),
+    prompt = "Investigate if the investment strategies adopted by mutual funds are uniformly distributed.",
+    filename = "mutual_fund_investment_strategies_distribution.csv"
+  ),
+  list(
+    categories = c("Salary", "Commission", "Bonus", "Stock Options"),
+    prompt = "Analyze if the types of compensation offered to sales staff in a tech company are uniformly distributed.",
+    filename = "sales_staff_compensation_types_distribution.csv"
+  ),
+  list(
+    categories = c("New York", "London", "Hong Kong", "Tokyo"),
+    prompt = "Determine if the locations of international finance conferences attended by a firm's executives are uniformly distributed.",
+    filename = "finance_conference_locations_distribution.csv"
+  ),
+  list(
+    categories = c("Founder", "Family", "Investor", "Employee"),
+    prompt = "Assess if the ownership types of small businesses are uniformly distributed.",
+    filename = "small_business_ownership_types_distribution.csv"
+  ),
+  list(
+    categories = c("Less than 20", "20-100", "101-500", "More than 500"),
+    prompt = "Examine if the number of employees at tech startups is uniformly distributed.",
+    filename = "tech_startup_employee_numbers_distribution.csv"
+  ),
+  list(
+    categories = c("Solar", "Wind", "Hydro", "Nuclear"),
+    prompt = "Evaluate if the investment in different renewable energy projects by a government is uniformly distributed.",
+    filename = "renewable_energy_projects_investment_distribution.csv"
+  ),
+  list(
+    categories = c("Apparel", "Beverages", "Electronics", "Furniture"),
+    prompt = "Check if the focus industries for an export promotion program are uniformly distributed.",
+    filename = "export_promotion_focus_industries_distribution.csv"
+  ),
+  list(
+    categories = c("Weekly", "Monthly", "Quarterly", "Annually"),
+    prompt = "Investigate if the audit frequency for internal processes in a manufacturing company is uniformly distributed.",
+    filename = "internal_audit_frequency_distribution.csv"
   )
 )
+
 
 
 #' @name chisq_fit_nonuniform_text
