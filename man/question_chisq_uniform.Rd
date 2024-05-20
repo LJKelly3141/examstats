@@ -8,9 +8,10 @@ question_chisq_uniform(
   levels = NULL,
   prompt = NULL,
   probs = NULL,
-  filename = NULL,
+  filename = "data",
   n = 50,
   target_p_value = 0.05,
+  email = NULL,
   max_iterations = 1e+05
 )
 }
@@ -29,6 +30,8 @@ If NULL, assumes uniform distribution across levels.}
 \item{n}{The number of samples to generate for the category data.}
 
 \item{target_p_value}{The target p-value for ensuring the data fits the Chi-square test criteria.}
+
+\item{email}{Email associated with the Google Drive account for used for sharing data description}
 
 \item{max_iterations}{The maximum number of iterations to attempt to meet the target p-value.}
 }

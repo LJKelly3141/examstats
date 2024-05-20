@@ -4,10 +4,10 @@
 \alias{upload_data_google}
 \title{Upload a DataFrame to Google Drive and Get a Shareable Link}
 \usage{
-upload_data_google(dataframe, folder_path, file_name, email = NULL)
+upload_data_google(data, folder_path, file_name, email = NULL)
 }
 \arguments{
-\item{dataframe}{A DataFrame to be uploaded.}
+\item{data}{A DataFrame to be uploaded.}
 
 \item{folder_path}{A character string specifying the path of the folder on Google Drive.}
 

@@ -4,7 +4,7 @@
 #' and returns a shareable link. If the folder does not exist, it will be created.
 #' Optionally, you can specify an email for authentication.
 #'
-#' @param dataframe A DataFrame to be uploaded.
+#' @param data A DataFrame to be uploaded.
 #' @param folder_path A character string specifying the path of the folder on Google Drive.
 #' @param file_name A character string specifying the name of the file to be created on Google Drive.
 #' @param email An optional character string specifying the email to use for authentication.
@@ -14,7 +14,7 @@
 #' @importFrom googledrive drive_auth drive_ls drive_mkdir drive_upload drive_share drive_rm as_id
 #' @importFrom readr write_csv
 #' @export
-upload_data_google <- function(dataframe, folder_path, file_name, email = NULL) {
+upload_data_google <- function(data, folder_path, file_name, email = NULL) {
   # Authenticate with the specified email
   if (!is.null(email)) {
     suppressMessages(drive_auth(email = email))
@@ -59,7 +59,7 @@ upload_data_google <- function(dataframe, folder_path, file_name, email = NULL) 
 
   # Create a temporary CSV file from the dataframe
   temp_csv <- tempfile(fileext = ".csv")
-  write_csv(dataframe, temp_csv)
+  write_csv(data, temp_csv)
 
   # Upload the CSV file to the specified folder
   uploaded_file <- suppressMessages(drive_upload(temp_csv, path = as_id(parent_id), name = file_name))

@@ -14,6 +14,7 @@
 #' @param filename A file name for an encoded csv file.
 #' @param n The number of samples to generate for the category data.
 #' @param target_p_value The target p-value for ensuring the data fits the Chi-square test criteria.
+#' @param email Email associated with the Google Drive account for used for sharing data description
 #' @param max_iterations The maximum number of iterations to attempt to meet the target p-value.
 #' @return A list containing the levels, prompt, data, a frequency table of the data, and the Chi-square test results.
 #' @examples
@@ -24,9 +25,10 @@
 question_chisq_uniform <- function(levels = NULL,
                                    prompt = NULL,
                                    probs = NULL,
-                                   filename = NULL,
+                                   filename = "data",
                                    n = 50,
                                    target_p_value = 0.05,
+                                   email = NULL,
                                    max_iterations = 100000) {
   # Determine levels
   if (is.null(levels) | (is.null(prompt))) {
@@ -46,6 +48,14 @@ question_chisq_uniform <- function(levels = NULL,
   )
 
   link <- encode_data_as_link(data = data.frame(data), file_name = filename)
+  if(!is.null(email)){
+  google_link <- upload_data_google(data = data.frame(data),
+                                    file_name = paste0(filename,
+                                                       sample(10:99,1)),
+                                    )
+  } else {
+    google_link <- NULL
+  }
 
   # Generate table data
   table <- table(data)
@@ -59,6 +69,7 @@ question_chisq_uniform <- function(levels = NULL,
     prompt = prompt,
     data = data,
     link = link,
+    google_link = google_link,
     table = table,
     test = test
   ))
