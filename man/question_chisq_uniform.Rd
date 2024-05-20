@@ -8,6 +8,7 @@ question_chisq_uniform(
   levels = NULL,
   prompt = NULL,
   probs = NULL,
+  folder_path = "examstats",
   filename = "data",
   n = 50,
   target_p_value = 0.05,
@@ -25,13 +26,15 @@ If NULL, associated with the randomly selected scenario.}
 \item{probs}{A vector of probabilities for each level.
 If NULL, assumes uniform distribution across levels.}
 
+\item{folder_path}{Google Drive folder for data.}
+
 \item{filename}{A file name for an encoded csv file.}
 
 \item{n}{The number of samples to generate for the category data.}
 
 \item{target_p_value}{The target p-value for ensuring the data fits the Chi-square test criteria.}
 
-\item{email}{Email associated with the Google Drive account for used for sharing data description}
+\item{email}{Email associated with the Google Drive account used for sharing data description}
 
 \item{max_iterations}{The maximum number of iterations to attempt to meet the target p-value.}
 }

@@ -11,6 +11,7 @@
 #'               If NULL, associated with the randomly selected scenario.
 #' @param probs A vector of probabilities for each level.
 #'              If NULL, assumes uniform distribution across levels.
+#' @param folder_path Google Drive folder for data.
 #' @param filename A file name for an encoded csv file.
 #' @param n The number of samples to generate for the category data.
 #' @param target_p_value The target p-value for ensuring the data fits the Chi-square test criteria.
@@ -25,6 +26,7 @@
 question_chisq_uniform <- function(levels = NULL,
                                    prompt = NULL,
                                    probs = NULL,
+                                   folder_path = "examstats",
                                    filename = "data",
                                    n = 50,
                                    target_p_value = 0.05,
@@ -50,6 +52,7 @@ question_chisq_uniform <- function(levels = NULL,
   link <- encode_data_as_link(data = data.frame(data), file_name = filename)
   if(!is.null(email)){
   google_link <- upload_data_google(data = data.frame(data),
+                                    folder_path = folder_path,
                                     file_name = paste0(filename,
                                                        sample(10:99,1)),
                                     )
@@ -74,3 +77,7 @@ question_chisq_uniform <- function(levels = NULL,
     test = test
   ))
 }
+
+
+
+
