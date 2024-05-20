@@ -14,7 +14,7 @@
 #' @param filename A file name for an encoded csv file.
 #' @param n The number of samples to generate for the category data.
 #' @param target_p_value The target p-value for ensuring the data fits the Chi-square test criteria.
-#' @param email Email associated with the Google Drive account for used for sharing data description
+#' @param email Email associated with the Google Drive account used for sharing data description
 #' @param max_iterations The maximum number of iterations to attempt to meet the target p-value.
 #' @return A list containing the levels, prompt, data, a frequency table of the data, and the Chi-square test results.
 #' @examples
