@@ -47,6 +47,7 @@ question_chisq_nonuniform <- function(description = NULL,
     description = chisq_fit_nonuniform_text[[question_number]]$description
     levels = chisq_fit_nonuniform_text[[question_number]]$categories
     prompt = chisq_fit_nonuniform_text[[question_number]]$prompt
+    filename = chisq_fit_uniform_text[[question_number]]$filename
   }
 
   # Set default probabilities to uniform if not provided
@@ -64,6 +65,7 @@ question_chisq_nonuniform <- function(description = NULL,
     target_p_value = target_p_value,
     max_iterations = max_iterations
   )
+  print(data)
 
   link <- encode_data_as_link(data = data.frame(data), file_name = filename)
   if(!is.null(email)){
@@ -99,3 +101,5 @@ question_chisq_nonuniform <- function(description = NULL,
     )
   )
 }
+
+
