@@ -31,7 +31,7 @@ question_chisq_independence <- function(
 ) {
   # Determine levels
   if (is.null(levels1) | is.null(levels2) | is.null(prompt)) {
-    question_number <- sample(1:length(chisq_fit_nonuniform_text), 1)
+    question_number <- sample(1:length(chisq_independence_text), 1)
     levels1 = chisq_independence_text[[question_number]]$category1
     levels2 = chisq_independence_text[[question_number]]$category2
     prompt = chisq_independence_text[[question_number]]$prompt
