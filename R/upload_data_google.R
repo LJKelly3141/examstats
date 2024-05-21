@@ -15,9 +15,7 @@
 #' @importFrom readr write_csv
 #' @export
 upload_data_google <- function(data, folder_path, file_name, email = NULL) {
-  create_hyperlink <- function(url, label = url) {
-    return(cat(paste0('<a href="', url, '">', label, '</a>')))
-  }
+
   # Authenticate with the specified email
   if (!is.null(email)) {
     suppressMessages(drive_auth(email = email))
@@ -77,5 +75,5 @@ upload_data_google <- function(data, folder_path, file_name, email = NULL) {
   # Clean up the temporary file
   file.remove(temp_csv)
 
-  return(create_hyperlink(shareable_link))
+  return(shareable_link)
 }
