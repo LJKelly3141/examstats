@@ -15,6 +15,9 @@
 #' @importFrom readr write_csv
 #' @export
 upload_data_google <- function(data, folder_path, file_name, email = NULL) {
+  create_hyperlink <- function(url, label = url) {
+    return(cat(paste0('<a href="', url, '">', label, '</a>')))
+  }
   # Authenticate with the specified email
   if (!is.null(email)) {
     suppressMessages(drive_auth(email = email))
@@ -24,11 +27,6 @@ upload_data_google <- function(data, folder_path, file_name, email = NULL) {
 
   # Helper function to create a folder if it doesn't exist
   create_folder_if_not_exists <- function(parent_id, folder_name) {
-
-    create_hyperlink <- function(url, label = url) {
-      return(cat(paste0('<a href="', url, '">', label, '</a>')))
-    }
-
     # Search for the folder in the specified parent folder
     folder <- suppressMessages(drive_ls(as_id(parent_id), pattern = folder_name, type = "folder"))
 
