@@ -1,24 +1,31 @@
 #' Generate a Chi-Square Goodness of Fit Test Question for Non-uniform Distributions
 #'
-#' This function dynamically generates a Chi-square goodness of fit test question
-#' for non-uniform distributions based on either supplied parameters or randomly selected
-#' scenarios from predefined lists. It simulates category data based on specified or
-#' non-uniform probabilities, performs the Chi-square test, and returns the results
-#' along with the generated data.
+#' This function dynamically generates a question for a Chi-square goodness of fit test
+#' tailored to non-uniform distributions. It allows customization through parameters or
+#' automatically generates data based on pre-defined scenarios. The function simulates
+#' categorical data, performs the Chi-square test, and provides detailed output including
+#' test results and the data used.
 #'
-#' @param description Descriptive text for the question scenario.
-#'                    If NULL, it is automatically filled with a random scenario.
-#' @param levels A vector of levels (categories) for the test.
-#'               If NULL, a random scenario is selected with corresponding levels.
-#' @param prompt A string representing the prompt for the test question.
-#'               If NULL, it is filled with a prompt corresponding to the selected scenario.
-#' @param probs A vector of probabilities for each level, representing non-uniform distributions.
-#'              If NULL, random non-uniform probabilities are generated.
-#' @param n The number of samples to generate for the category data.
-#' @param target_p_value The target p-value for ensuring the data fits the intended Chi-square test criteria.
-#' @param max_iterations The maximum number of iterations to attempt to meet the target p-value.
-#' @return A list containing the question description, assigned probabilities, levels, prompt,
-#'         simulated data, a frequency table of the data, and the Chi-square test results.
+#' @param description Descriptive text for the question scenario. If NULL, automatically
+#'                    selects a random predefined scenario.
+#' @param levels Categories to be tested in the Chi-square test. If NULL, selects
+#'               categories based on a random predefined scenario.
+#' @param prompt Instructional prompt for the test question. If NULL, a suitable prompt
+#'               is automatically generated based on the scenario.
+#' @param probs Probabilities associated with each category, reflecting a non-uniform
+#'              distribution. If NULL, generates random non-uniform probabilities.
+#' @param folder_path Path to the folder where generated data files will be stored.
+#' @param filename Name of the file to save the generated data. If NULL, the data
+#'                 is not saved to a file.
+#' @param n Number of samples to simulate for the categorical data.
+#' @param target_p_value Desired p-value threshold for the Chi-square test to ensure the
+#'                       data meets specific statistical criteria.
+#' @param email Email address to send the link of the generated data file. If NULL,
+#'              the link is not sent.
+#' @param max_iterations Maximum number of iterations to attempt generating data that
+#'                       meets the target_p_value.
+#' @return A list containing the question scenario, probabilities, categories, prompt,
+#'         simulated data, frequency table of the data, and Chi-square test results.
 #' @examples
 #' question <- question_chisq_nonuniform()
 #' print(question)
@@ -27,8 +34,11 @@ question_chisq_nonuniform <- function(description = NULL,
                                       levels = NULL,
                                       prompt = NULL,
                                       probs = NULL,
+                                      folder_path = "examstats",
+                                      filename = NULL,
                                       n = 50,
                                       target_p_value = 0.05,
+                                      email = NULL,
                                       max_iterations = 100000) {
   # Determine levels
   if (is.null(levels) | (is.null(prompt))) {
@@ -54,6 +64,19 @@ question_chisq_nonuniform <- function(description = NULL,
     max_iterations = max_iterations
   )
 
+  link <- encode_data_as_link(data = data.frame(data), file_name = filename)
+  if(!is.null(email)){
+    google_link <- upload_data_google(data = data.frame(data),
+                                      email = email,
+                                      folder_path = folder_path,
+                                      file_name = gsub("\\.",
+                                                       paste0(sample(10:99, 1), "."),
+                                                       filename)
+    )
+  } else {
+    google_link <- NULL
+  }
+
   # Generate table data
   table <- table(data)
 
@@ -68,6 +91,8 @@ question_chisq_nonuniform <- function(description = NULL,
       levels = levels,
       prompt = prompt,
       data = data,
+      link = link,
+      google_link = google_link,
       table = table,
       test = test
     )

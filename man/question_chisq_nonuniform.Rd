@@ -9,40 +9,53 @@ question_chisq_nonuniform(
   levels = NULL,
   prompt = NULL,
   probs = NULL,
+  folder_path = "examstats",
+  filename = NULL,
   n = 50,
   target_p_value = 0.05,
+  email = NULL,
   max_iterations = 1e+05
 )
 }
 \arguments{
-\item{description}{Descriptive text for the question scenario.
-If NULL, it is automatically filled with a random scenario.}
+\item{description}{Descriptive text for the question scenario. If NULL, automatically
+selects a random predefined scenario.}
 
-\item{levels}{A vector of levels (categories) for the test.
-If NULL, a random scenario is selected with corresponding levels.}
+\item{levels}{Categories to be tested in the Chi-square test. If NULL, selects
+categories based on a random predefined scenario.}
 
-\item{prompt}{A string representing the prompt for the test question.
-If NULL, it is filled with a prompt corresponding to the selected scenario.}
+\item{prompt}{Instructional prompt for the test question. If NULL, a suitable prompt
+is automatically generated based on the scenario.}
 
-\item{probs}{A vector of probabilities for each level, representing non-uniform distributions.
-If NULL, random non-uniform probabilities are generated.}
+\item{probs}{Probabilities associated with each category, reflecting a non-uniform
+distribution. If NULL, generates random non-uniform probabilities.}
 
-\item{n}{The number of samples to generate for the category data.}
+\item{folder_path}{Path to the folder where generated data files will be stored.}
 
-\item{target_p_value}{The target p-value for ensuring the data fits the intended Chi-square test criteria.}
+\item{filename}{Name of the file to save the generated data. If NULL, the data
+is not saved to a file.}
 
-\item{max_iterations}{The maximum number of iterations to attempt to meet the target p-value.}
+\item{n}{Number of samples to simulate for the categorical data.}
+
+\item{target_p_value}{Desired p-value threshold for the Chi-square test to ensure the
+data meets specific statistical criteria.}
+
+\item{email}{Email address to send the link of the generated data file. If NULL,
+the link is not sent.}
+
+\item{max_iterations}{Maximum number of iterations to attempt generating data that
+meets the target_p_value.}
 }
 \value{
-A list containing the question description, assigned probabilities, levels, prompt,
-simulated data, a frequency table of the data, and the Chi-square test results.
+A list containing the question scenario, probabilities, categories, prompt,
+simulated data, frequency table of the data, and Chi-square test results.
 }
 \description{
-This function dynamically generates a Chi-square goodness of fit test question
-for non-uniform distributions based on either supplied parameters or randomly selected
-scenarios from predefined lists. It simulates category data based on specified or
-non-uniform probabilities, performs the Chi-square test, and returns the results
-along with the generated data.
+This function dynamically generates a question for a Chi-square goodness of fit test
+tailored to non-uniform distributions. It allows customization through parameters or
+automatically generates data based on pre-defined scenarios. The function simulates
+categorical data, performs the Chi-square test, and provides detailed output including
+test results and the data used.
 }
 \examples{
 question <- question_chisq_nonuniform()
