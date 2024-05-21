@@ -49,15 +49,14 @@ question_chisq_uniform <- function(levels = NULL,
     max_iterations = max_iterations
   )
 
-
-
   link <- encode_data_as_link(data = data.frame(data), file_name = filename)
   if(!is.null(email)){
   google_link <- upload_data_google(data = data.frame(data),
                                     email = email,
                                     folder_path = folder_path,
-                                    file_name = paste0(filename,
-                                                       sample(10:99,1)),
+                                    file_name = gsub("\\.",
+                                                     paste0(sample(10:99, 1), "."),
+                                                     filename)
                                     )
   } else {
     google_link <- NULL
