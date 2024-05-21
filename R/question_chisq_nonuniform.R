@@ -65,7 +65,6 @@ question_chisq_nonuniform <- function(description = NULL,
     target_p_value = target_p_value,
     max_iterations = max_iterations
   )
-  print(data)
 
   link <- encode_data_as_link(data = data.frame(data), file_name = filename)
   if(!is.null(email)){
