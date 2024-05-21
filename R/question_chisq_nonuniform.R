@@ -25,7 +25,8 @@
 #' @param max_iterations Maximum number of iterations to attempt generating data that
 #'                       meets the target_p_value.
 #' @return A list containing the question scenario, probabilities, categories, prompt,
-#'         simulated data, frequency table of the data, and Chi-square test results.
+#'         simulated data, encoded link, and Google Drive links, frequency table of the data,
+#'         and Chi-square test results.
 #' @examples
 #' question <- question_chisq_nonuniform()
 #' print(question)

@@ -48,7 +48,8 @@ meets the target_p_value.}
 }
 \value{
 A list containing the question scenario, probabilities, categories, prompt,
-simulated data, frequency table of the data, and Chi-square test results.
+simulated data, encoded link, and Google Drive links, frequency table of the data,
+and Chi-square test results.
 }
 \description{
 This function dynamically generates a question for a Chi-square goodness of fit test

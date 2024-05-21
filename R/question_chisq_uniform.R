@@ -17,7 +17,7 @@
 #' @param target_p_value The target p-value for ensuring the data fits the Chi-square test criteria.
 #' @param email Email associated with the Google Drive account used for sharing data description
 #' @param max_iterations The maximum number of iterations to attempt to meet the target p-value.
-#' @return A list containing the levels, prompt, data, a frequency table of the data, and the Chi-square test results.
+#' @return A list containing the levels, prompt, data, encoded link, and Google Drive links, a frequency table of the data, and the Chi-square test results.
 #' @examples
 #' question <- question_chisq_uniform()
 #' print(question)

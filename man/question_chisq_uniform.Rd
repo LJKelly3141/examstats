@@ -39,7 +39,7 @@ If NULL, assumes uniform distribution across levels.}
 \item{max_iterations}{The maximum number of iterations to attempt to meet the target p-value.}
 }
 \value{
-A list containing the levels, prompt, data, a frequency table of the data, and the Chi-square test results.
+A list containing the levels, prompt, data, encoded link, and Google Drive links, a frequency table of the data, and the Chi-square test results.
 }
 \description{
 This function dynamically generates a Chi-square goodness of fit test question
