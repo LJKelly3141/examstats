@@ -88,7 +88,9 @@ question_chisq_independence <- function(
       prompt = prompt,
       data = data,
       table = table,
-      test = test
+      test = test,
+      link = link,
+      google_link = google_link
     )
   )
 }
