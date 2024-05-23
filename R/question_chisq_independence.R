@@ -49,6 +49,7 @@ question_chisq_independence <- function(
     levels1 = chisq_independence_text[[question_number]]$category1
     levels2 = chisq_independence_text[[question_number]]$category2
     prompt = chisq_independence_text[[question_number]]$prompt
+    filename = chisq_independence_text[[question_number]]$filename
   }
 
   # Generate question data
