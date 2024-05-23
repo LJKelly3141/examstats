@@ -9,7 +9,11 @@ question_chisq_independence(
   levels2 = NULL,
   sample_size = NULL,
   target_p_value = 0.05,
-  max_iterations = 1000
+  max_iterations = 1000,
+  folder_path = "examstats",
+  filename = NULL,
+  n = 50,
+  email = NULL
 )
 }
 \arguments{
@@ -27,6 +31,15 @@ This parameter controls the simulation to achieve a dataset that can
 realistically represent independence or dependence as needed for educational purposes.}
 
 \item{max_iterations}{The maximum number of iterations to attempt to generate data that meets the target p-value.}
+
+\item{folder_path}{The folder path where the data file will be saved on Google Drive.}
+
+\item{filename}{The name of the file to save. If NULL, the data will not be saved.}
+
+\item{n}{The number of questions to generate. Only relevant if levels1 and levels2 are NULL.}
+
+\item{email}{The email address to which the Google Drive link of the saved data file will be sent.
+If NULL, no email will be sent.}
 }
 \value{
 A list containing the category levels for both variables, the prompt for the question,
@@ -37,6 +50,10 @@ This function dynamically generates a question for a Chi-square test of independ
 using either specified levels or randomly selected from predefined scenarios.
 It simulates data assuming independence between the two categorical variables,
 performs the Chi-square test, and returns the results along with the generated data.
+}
+\details{
+The function can optionally save the simulated data to a specified folder and
+email the saved file link using Google Drive integration if provided with an email address.
 }
 \examples{
 question <- question_chisq_independence()

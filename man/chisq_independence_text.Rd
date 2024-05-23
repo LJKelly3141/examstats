@@ -5,7 +5,7 @@
 \alias{chisq_independence_text}
 \title{Chi-square Tests of Independence Scenarios}
 \format{
-An object of class \code{list} of length 20.
+An object of class \code{list} of length 47.
 }
 \usage{
 chisq_independence_text
