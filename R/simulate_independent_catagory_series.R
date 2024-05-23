@@ -79,7 +79,6 @@ simulate_independent_catagory_series <- function(levels1,
     if (abs(new_p_value - target_p_value) < abs(current_p_value - target_p_value)) {
       factor2 <- factor2_new
       current_p_value <- new_p_value  # Update current p-value
-      print(current_p_value)
     }
 
     iteration <- iteration + 1
