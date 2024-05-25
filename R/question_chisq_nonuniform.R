@@ -37,7 +37,7 @@ question_chisq_nonuniform <- function(description = NULL,
                                       probs = NULL,
                                       folder_path = "examstats",
                                       filename = NULL,
-                                      n = 50,
+                                      n = 100,
                                       target_p_value = 0.05,
                                       email = NULL,
                                       max_iterations = 100000) {
@@ -52,9 +52,15 @@ question_chisq_nonuniform <- function(description = NULL,
 
   # Set default probabilities to uniform if not provided
   if (is.null(probs)) {
-    probs <- sample(15:100, length(levels))
-    probs <- round(probs / sum(probs), 2)
-    probs[1] <- probs[1] + (1 - sum(probs))
+    min_cat = 0
+    while(min_cat < 5){
+      probs <- sample(15:100, length(levels))
+      probs <- round(probs / sum(probs), 2)
+      probs <- round(probs * n, 0)
+      min_cat <- min(probs)
+    }
+    probs <- probs / sum(probs)
+    p <- probs
   }
 
   # Generate question data
