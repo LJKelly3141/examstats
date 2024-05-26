@@ -55,7 +55,7 @@ simulate_category_series <- function(levels,
       max = n / (length(levels) - 1) * .1
     )
     counts_new <- round(counts + noise)
-    counts_new[counts_new < 0] <- 5  # Ensure non-negative counts
+    counts_new[counts_new < 0] <- 0  # Ensure non-negative counts
     counts_new <- round(n * (counts_new / sum(counts_new)), 0)
 
 
