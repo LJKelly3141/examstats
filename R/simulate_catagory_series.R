@@ -42,20 +42,25 @@ simulate_category_series <- function(levels,
   iteration <- 0
   current_p_value <- initial_p_value
 
+
   # Adjust until target p-value is achieved or max iterations reached
   while ((current_p_value - target_p_value) > 0.001 &&
          iteration < max_iterations) {
-    # Add random noise to frequencies
+
+
+    #Add random noise to frequencies
     noise <- runif(
       length(counts),
       min = -n / (length(levels) - 1) * .1,
       max = n / (length(levels) - 1) * .1
     )
     counts_new <- round(counts + noise)
-    counts_new[counts_new < 0] <- 0  # Ensure non-negative counts
+    counts_new[counts_new < 0] <- 5  # Ensure non-negative counts
     counts_new <- round(n * (counts_new / sum(counts_new)), 0)
 
-    # Recalculate p-value
+
+
+   # Recalculate p-value
     if (sum(counts) > 0) {
       # Avoid division by zero
       current_p_value_new <- calc_p_value(counts_new, p = probs)
@@ -64,8 +69,16 @@ simulate_category_series <- function(levels,
         current_p_value <- current_p_value_new
       }
     }
+
+
+
+
     iteration <- iteration + 1
   }
+
+
+
+
   if (iteration >= max_iterations) {
     warning("Max iterations reached before desired p-value")
   }

@@ -14,7 +14,7 @@ question_chisq_nonuniform(
   n = 100,
   target_p_value = 0.05,
   email = NULL,
-  max_iterations = 1e+05
+  max_iterations = 1000
 )
 }
 \arguments{

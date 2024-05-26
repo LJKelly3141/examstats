@@ -40,7 +40,7 @@ question_chisq_nonuniform <- function(description = NULL,
                                       n = 100,
                                       target_p_value = 0.05,
                                       email = NULL,
-                                      max_iterations = 100000) {
+                                      max_iterations = 1000) {
   # Determine levels
   if (is.null(levels) | (is.null(prompt))) {
     question_number <- sample(1:length(chisq_fit_nonuniform_text), 1)
