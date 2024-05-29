@@ -52,15 +52,11 @@ question_chisq_nonuniform <- function(description = NULL,
 
   # Set default probabilities to uniform if not provided
   if (is.null(probs)) {
-    min_cat = 0
-    while(min_cat < 5){
-      probs <- sample(15:100, length(levels))
-      probs <- round(probs / sum(probs), 2)
-      probs <- round(probs * n, 0)
-      min_cat <- min(probs)
-    }
-    probs <- probs / sum(probs)
-    p <- probs
+    counts <- sample(15:100, length(levels))
+    probs <- round(counts / sum(counts), 2)
+    counts <- n*probs
+    counts[counts<=5] <- counts[counts<=5] + 5
+    probs <- counts/sum(counts)
   }
 
   # Generate question data
@@ -89,7 +85,7 @@ question_chisq_nonuniform <- function(description = NULL,
   table <- table(data)
 
   # Calculate chi square test
-  test <- chisq.test(table)
+  test <- chisq.test(table,p = probs)
 
   # Return
   return(
