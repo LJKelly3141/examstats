@@ -7,9 +7,9 @@
 simulate_category_series(
   levels,
   probs = NULL,
-  n = 1000,
+  n = 250,
   target_p_value = 0.05,
-  max_iterations = 1e+05
+  max_iterations = 1000
 )
 }
 \arguments{

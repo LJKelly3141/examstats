@@ -22,10 +22,12 @@
 #' @export
 simulate_category_series <- function(levels,
                                      probs = NULL,
-                                     n = 1000,
+                                     n = 250,
                                      target_p_value = 0.05,
-                                     max_iterations = 100000) {
-  # Set default probabilities to uniform if not provided
+                                     max_iterations = 1000) {
+
+
+
   if (is.null(probs)) {
     probs <- rep(1 / length(levels), length(levels))
   }
@@ -38,46 +40,37 @@ simulate_category_series <- function(levels,
 
   # Generate initial factor variable
   counts <- round(n * probs, 0)
+  counts[counts<=5] <- counts[counts<=5] + 5
+  probs <- counts/sum(counts)
+
   initial_p_value <- calc_p_value(counts, p = probs)
   iteration <- 0
   current_p_value <- initial_p_value
-
+  noise_size <- 0.1
 
   # Adjust until target p-value is achieved or max iterations reached
   while ((current_p_value - target_p_value) > 0.001 &&
          iteration < max_iterations) {
 
-
     #Add random noise to frequencies
-    noise <- runif(
-      length(counts),
-      min = -n / (length(levels) - 1) * .1,
-      max = n / (length(levels) - 1) * .1
+    noise <- sample(size = length(counts),
+                    x = rep(c(1-noise_size,1,1+noise_size),2)
     )
-    counts_new <- round(counts + noise)
-    counts_new[counts_new < 0] <- 0  # Ensure non-negative counts
-    counts_new <- round(n * (counts_new / sum(counts_new)), 0)
+    counts_new <- round(counts * noise)
 
-
-
-   # Recalculate p-value
-    if (sum(counts) > 0) {
-      # Avoid division by zero
-      current_p_value_new <- calc_p_value(counts_new, p = probs)
-      if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value)) {
-        counts <- counts_new
-        current_p_value <- current_p_value_new
-      }
+    current_p_value_new <- calc_p_value(counts_new, p = probs)
+    if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value)) {
+      counts <- counts_new
+      current_p_value <- current_p_value_new
     }
 
-
-
-
+    # Prevent inf loop
     iteration <- iteration + 1
+  } #while
+
+  if (iteration >= max_iterations) {
+    warning("Max iterations reached before desired p-value")
   }
-
-
-
 
   if (iteration >= max_iterations) {
     warning("Max iterations reached before desired p-value")
