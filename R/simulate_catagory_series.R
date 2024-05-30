@@ -59,7 +59,6 @@ simulate_category_series <- function(levels,
     counts_new <- ceiling(counts * noise)
 
     current_p_value_new <- calc_p_value(counts_new, p = probs)
-  print(c(iteration,current_p_value_new,current_p_value))
     if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value) &&
         current_p_value_new > 0.5*target_p_value) {
       counts <- counts_new
