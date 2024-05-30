@@ -20,6 +20,7 @@
 #' mc_chisq_questions[[1]]$correct
 #' @export
 mc_chisq_questions <- list(
+
   list(
     prompt = "What is the chi-square test used for?",
     answers = c("Testing the equality of two means",
