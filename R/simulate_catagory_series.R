@@ -40,26 +40,28 @@ simulate_category_series <- function(levels,
 
   # Generate initial factor variable
   counts <- round(n * probs, 0)
-  counts[counts<=5] <- counts[counts<=5] + 5
-  probs <- counts/sum(counts)
+  #counts[counts<=5] <- counts[counts<=5] + 5
+  #probs <- counts/sum(counts)
 
   initial_p_value <- calc_p_value(counts, p = probs)
   iteration <- 0
   current_p_value <- initial_p_value
-  noise_size <- 0.1
+  noise_size <- 0.05
 
   # Adjust until target p-value is achieved or max iterations reached
-  while ((current_p_value - target_p_value) > 0.001 &&
+  while (current_p_value > target_p_value &&
          iteration < max_iterations) {
 
     #Add random noise to frequencies
     noise <- sample(size = length(counts),
                     x = rep(c(1-noise_size,1,1+noise_size),2)
     )
-    counts_new <- round(counts * noise)
+    counts_new <- ceiling(counts * noise)
 
     current_p_value_new <- calc_p_value(counts_new, p = probs)
-    if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value)) {
+  print(c(iteration,current_p_value_new,current_p_value))
+    if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value) &&
+        current_p_value_new > 0.5*target_p_value) {
       counts <- counts_new
       current_p_value <- current_p_value_new
     }
@@ -67,14 +69,6 @@ simulate_category_series <- function(levels,
     # Prevent inf loop
     iteration <- iteration + 1
   } #while
-
-  if (iteration >= max_iterations) {
-    warning("Max iterations reached before desired p-value")
-  }
-
-  if (iteration >= max_iterations) {
-    warning("Max iterations reached before desired p-value")
-  }
 
   # Ensure the resulting object is a factor
   final_factor <- rep(levels, counts)

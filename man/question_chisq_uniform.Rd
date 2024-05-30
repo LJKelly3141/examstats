@@ -10,7 +10,7 @@ question_chisq_uniform(
   probs = NULL,
   folder_path = "examstats",
   filename = NULL,
-  n = 50,
+  n = 250,
   target_p_value = 0.05,
   email = NULL,
   max_iterations = 1e+05
