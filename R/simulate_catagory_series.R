@@ -46,7 +46,7 @@ simulate_category_series <- function(levels,
   initial_p_value <- calc_p_value(counts, p = probs)
   iteration <- 0
   current_p_value <- initial_p_value
-  noise_size <- 0.05
+  noise_size <- 0.01
 
   # Adjust until target p-value is achieved or max iterations reached
   while (current_p_value > target_p_value &&
