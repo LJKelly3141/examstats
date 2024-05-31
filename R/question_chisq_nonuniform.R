@@ -57,6 +57,7 @@ question_chisq_nonuniform <- function(description = NULL,
     counts <- n*probs
     counts[counts<=5] <- counts[counts<=5] + 5
     probs <- round(counts/sum(counts),2)
+    probs[1] <- probs[1] + 1 - sum(probs)
     counts <- round(n*probs,0)
   }
 
