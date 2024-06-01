@@ -21,8 +21,8 @@
 mc_anova_questions <- list(
   list(
     prompt = "What does ANOVA stand for?",
-    answers = c("Analysis of Variation", "Analysis of Numerical Values",
-                "Analysis of Variances", "Analysis of Variance"),
+    answers = c("Analysis of Means", "Analysis of Numerical Values",
+                "Analysis of Differences", "Analysis of Variance"),
     correct = c(FALSE, FALSE, FALSE, TRUE),
     explanation = "ANOVA stands for Analysis of Variance, a statistical method used to test differences between two or more means."
   ),
