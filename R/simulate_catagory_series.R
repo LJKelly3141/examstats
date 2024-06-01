@@ -56,7 +56,8 @@ simulate_category_series <- function(levels,
 
     #Add random noise to frequencies
     noise <- sample(size = length(counts),
-                    x = rep(c(1-noise_size,1,1+noise_size),2)
+                    replace = TRUE,
+                    x = c(1-noise_size,1,1+noise_size)
     )
     counts_new <- ceiling(counts * noise)
 
