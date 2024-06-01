@@ -15,7 +15,8 @@ simulate_category_series(
 \arguments{
 \item{levels}{A vector specifying the levels for the categorical variable.}
 
-\item{probs}{A vector specifying the probabilities for each level. If NULL, probabilities are assumed to be uniform.}
+\item{probs}{A vector specifying the probabilities for each level. If NULL,
+probabilities are assumed to be uniform.}
 
 \item{n}{The total number of observations to generate.}
 
@@ -27,7 +28,9 @@ simulate_category_series(
 A factor representing the generated categorical variable.
 }
 \description{
-This function generates a categorical variable with specified probabilities, adjusting frequencies until the chi-squared test of independence reaches a target p-value.
+This function generates a categorical variable with specified probabilities,
+adjusting frequencies until the chi-squared test of independence reaches a
+target p-value.
 }
 \examples{
 levels <- c("A", "B", "C", "D")

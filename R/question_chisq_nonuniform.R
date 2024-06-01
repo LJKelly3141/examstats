@@ -59,6 +59,8 @@ question_chisq_nonuniform <- function(description = NULL,
     probs <- round(counts/sum(counts),2)
     probs[1] <- probs[1] + 1 - sum(probs)
     counts <- round(n*probs,0)
+    names(counts) <- levels
+    names(probs) <- levels
   }
 
   # Generate question data
@@ -84,10 +86,12 @@ question_chisq_nonuniform <- function(description = NULL,
   }
 
   # Generate table data
-  table <- table(data)
+  table <- table(factor(data, levels=unique(data)))
 
   # Calculate chi square test
   test <- chisq.test(table,p = probs)
+
+
 
   # Return
   return(

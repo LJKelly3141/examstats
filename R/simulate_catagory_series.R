@@ -1,9 +1,12 @@
 #' Simulate Categorical Series
 #'
-#' This function generates a categorical variable with specified probabilities, adjusting frequencies until the chi-squared test of independence reaches a target p-value.
+#' This function generates a categorical variable with specified probabilities,
+#' adjusting frequencies until the chi-squared test of independence reaches a
+#' target p-value.
 #'
 #' @param levels A vector specifying the levels for the categorical variable.
-#' @param probs A vector specifying the probabilities for each level. If NULL, probabilities are assumed to be uniform.
+#' @param probs A vector specifying the probabilities for each level. If NULL,
+#'              probabilities are assumed to be uniform.
 #' @param n The total number of observations to generate.
 #' @param target_p_value The target p-value for the chi-squared test.
 #' @param max_iterations The maximum number of iterations to achieve the target p-value.
@@ -27,7 +30,7 @@ simulate_category_series <- function(levels,
                                      max_iterations = 1000) {
 
 
-
+  # Uniform relative frequencies
   if (is.null(probs)) {
     probs <- rep(1 / length(levels), length(levels))
   }
@@ -40,13 +43,12 @@ simulate_category_series <- function(levels,
 
   # Generate initial factor variable
   counts <- round(n * probs, 0)
-  #counts[counts<=5] <- counts[counts<=5] + 5
-  #probs <- counts/sum(counts)
 
+  # Initialize variables for search
   initial_p_value <- calc_p_value(counts, p = probs)
   iteration <- 0
   current_p_value <- initial_p_value
-  noise_size <- 0.01
+  noise_size <- 0.025
 
   # Adjust until target p-value is achieved or max iterations reached
   while (current_p_value > target_p_value &&
@@ -59,6 +61,7 @@ simulate_category_series <- function(levels,
     counts_new <- ceiling(counts * noise)
 
     current_p_value_new <- calc_p_value(counts_new, p = probs)
+
     if (abs(current_p_value_new - target_p_value) < abs(current_p_value - target_p_value) &&
         current_p_value_new > 0.5*target_p_value) {
       counts <- counts_new
@@ -71,5 +74,7 @@ simulate_category_series <- function(levels,
 
   # Ensure the resulting object is a factor
   final_factor <- rep(levels, counts)
+  final_factor <- factor(final_factor, levels=unique(final_factor))
+
   return(final_factor)
 }
