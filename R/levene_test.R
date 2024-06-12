@@ -54,4 +54,3 @@ levene_pvalue <- function(data, group) {
   # Calculate and return the p-value
   pf(F_statistic, df_between, df_within, lower.tail = FALSE)
 }
-

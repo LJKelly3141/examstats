@@ -85,20 +85,16 @@ simulate_anova_data <- function(n = 100,
       current_p_value <- 1
       iteration <- 0
       while (current_p_value > 0.025 && iteration < max_iterations) {
-        sds_new <- runif(groups, min = 1, max = 10)
+        sds_new <- jitter(sds, amount = 0.5 *min(sds))
+        sds_new[sds_new<0] <- sds[sds_new<0]
         numeric_variable <- simulate_numeric_variable (groups = group_factor,
                                                        means = means,
                                                        sds = sds_new)
         current_p_value_new <- levene_pvalue(data = numeric_variable, group = group_factor)
-        current_p_value <- if (current_p_value_new < current_p_value) {
-          current_p_value_new
-        } else{
-          current_p_value
-        }
-        sds <- if (current_p_value_new < current_p_value) {
-          sds_new
-        } else{
-          sds
+
+      if (current_p_value_new < current_p_value) {
+        current_p_value <- current_p_value_new
+        sds <- sds_new
         }
         iteration <- iteration + 1
       }
@@ -107,10 +103,10 @@ simulate_anova_data <- function(n = 100,
 
   # Define jitter group means
   current_p_value <- 1
-  while (abs(current_p_value - target_p_value) > 0.001 &&
+  while (abs(current_p_value - target_p_value) > 0.0001 &&
          iteration < max_iterations) {
     jitter <- sample((-scale:scale), groups, replace = TRUE)
-    jitter <- ifelse(noise_level == "low", jitter * 0.05, jitter * 0.15)
+    jitter <- ifelse(noise_level == "low", jitter * 0.15, jitter * 0.25)
     means_new <- means + jitter
     numeric_variable <- simulate_numeric_variable (groups = group_factor,
                                                    means = means_new,

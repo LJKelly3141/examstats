@@ -11,21 +11,27 @@ A list of 50 elements, where each element is a list containing the following com
 \item{answers}{A character vector of four possible answers.}
 \item{correct}{A logical vector indicating which answer is correct (TRUE).}
 \item{explanation}{A character string explaining why the correct answer is correct.}
+\item{reading_link}{A character string providing a link to the related reading in the "Learning Statistics with R" textbook by Navarro.}
 }
 }
 \usage{
 mc_anova_questions
 }
 \description{
-This list contains 50 multiple choice questions designed to test knowledge
+This dataset contains 50 multiple choice questions designed to test knowledge
 and understanding of ANOVA (Analysis of Variance). Each question includes a
 prompt, four answer options (three incorrect and one correct), a vector
-indicating the correct answer, and an explanation of the correct answer.
+indicating the correct answer, an explanation of the correct answer, and a
+link to the related reading in the "Learning Statistics with R" textbook by
+Navarro.
 }
 \examples{
+data(mc_anova_questions)
 mc_anova_questions[[1]]$prompt
 mc_anova_questions[[1]]$answers
 mc_anova_questions[[1]]$correct
 mc_anova_questions[[1]]$explanation
+mc_anova_questions[[1]]$reading_link
+
 }
 \keyword{datasets}
