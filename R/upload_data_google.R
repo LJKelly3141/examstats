@@ -55,7 +55,7 @@ upload_data_google <- function(data, folder_path, file_name, email = NULL) {
   # Check if the file already exists in the folder and delete it if it does
   existing_file <- folder_files[folder_files$name == file_name, ]
   if (nrow(existing_file) > 0) {
-    file_name <- paste0(file_name,"_",runif(1,100))
+    suppressMessages(drive_rm(existing_file))
   }
 
   # Create a temporary CSV file from the dataframe
