@@ -75,7 +75,7 @@ question_anova <- function(levels = NULL,
     google_link <- upload_data_google(data = data.frame(data),
                                       email = email,
                                       folder_path = folder_path,
-                                      file_name = paste0("file_",sample(10:99, 1), ".csv")
+                                      file_name = paste0(anova_text$file_name,sample(100:999, 1), ".csv")
     )
   } else {
     google_link <- NULL
